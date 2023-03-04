@@ -1,0 +1,80 @@
+{
+	"baseRender": {
+		"rows": [
+			[
+				"MMM",
+				631867.4195999999
+			],
+			[
+				"ABBV",
+				179146.54999999993
+			],
+			[
+				"ABT",
+				227246.1303999998
+			]
+		],
+		"columns": [
+			{
+				"reference": "Dimension1",
+				"data_type": "TEXT"
+			},
+			{
+				"reference": "Metric1",
+				"data_type": "FLOAT"
+			}
+		]
+	},
+	"FormattingEnums": {
+		"rows": [
+			[
+				"MMM",
+				631867.4195999999
+			],
+			[
+				"ABBV",
+				179146.54999999993
+			],
+			[
+				"ABT",
+				227246.1303999998
+			]
+		],
+		"columns": [
+			{
+				"reference": "Dimension1",
+				"data_type": "TEXT"
+			},
+			{
+				"reference": "Metric1",
+				"data_type": "FLOAT"
+			}
+		]
+	},
+	"Bucket": {
+		"rows": [
+			[
+				"2021-03-08T00:00:00",
+				3843.85
+			],
+			[
+				"2017-05-22T00:00:00",
+				2486.68
+			],
+			[
+				"2003-08-04T00:00:00",
+				487.27070000000003
+			]
+		],
+		"columns": [
+			{
+				"reference": "Dimension1",
+				"data_type": "DATETIME"
+			},
+			{
+				"reference": "Metric1",
+				"data_type": "FLOAT"
+			}
+		]
+	}
+}

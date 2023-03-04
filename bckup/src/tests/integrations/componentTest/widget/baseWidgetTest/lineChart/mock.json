@@ -1,0 +1,300 @@
+{
+	"baseRender":
+	{
+		"id": "lineChart",
+		"name": "widget",
+		"slug": "dcd947c29ea74f90",
+		"widget_type": "widget_line_chart_single",
+		"widget_configuration": {
+			"version": "default/v0",
+			"show_label": false,
+			"stacked": false,
+			"timeline": {
+				"interval": 30000,
+				"font_size": 24
+			},
+			"label_rotate": false,
+			"grid_range_min_max": null,
+			"no_data_message": "No Data",
+			"title": "",
+			"x_axis_number_of_character": 5,
+			"selected_legend": null,
+			"bar_gap": false,
+			"horizontal": false,
+			"filter_datasets": [],
+			"vertical_label": false,
+			"custom_range_option": false,
+			"enums": null,
+			"x_axis_short_label": false,
+			"stacked_to_max": false,
+			"coloring": [
+				{
+					"color": "rgb(109,90,249)",
+					"index": 0
+				},
+				{
+					"color": "rgb(252,89,101)",
+					"index": 1
+				},
+				{
+					"color": "rgb(253,252,72)",
+					"index": 2
+				},
+				{
+					"color": "rgb(130,119,249)",
+					"index": 3
+				}
+			],
+			"legend_position": "bottom",
+			"filter_map": [],
+			"grid_right": null,
+			"grid_left": null,
+			"show_legend": true,
+			"label_position": "top",
+			"selected_format": null,
+			"legend_grid_width": 10
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			},
+			"size": {
+				"width": 1,
+				"height": 1
+			}
+		},
+		"filters": {
+			"version": "default/v0"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "0c53a988-3c0f-4a41-a5cf-801965a7ce7f",
+				"dataset_id": "bb4ca9f4-9e71-4fc8-bb97-dbb49880a105",
+				"widget_id": "da28894a-5641-4ea0-a7b2-3e0bcc8b75d1",
+				"configuration": {
+					"version": "default/v0",
+					"timeline": null,
+					"dimensions": [
+						{
+							"column": "Pokemon Name",
+							"function": "NO-CHANGE"
+						}
+					],
+					"last_value_column": null,
+					"order_by": [],
+					"ranking": null,
+					"metrics": [
+						{
+							"column": "Pokemon Id",
+							"aggregation": "COUNT"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "65853644-df0b-4ae6-b8ca-1d246fa6c619",
+		"created_at": "2021-11-19T09:53:56.434984+00:00",
+		"updated_by_id": "65853644-df0b-4ae6-b8ca-1d246fa6c619",
+		"updated_at": "2021-11-19T09:53:57.664355+00:00"
+	},
+	"Bucket":
+	{
+		"id": "lineChart",
+		"name": "Line chart",
+		"slug": "line-chart-0ba23bdb7c294b85",
+		"widget_type": "widget_line_chart_single",
+		"widget_configuration": {
+			"version": "default/v0",
+			"legend_position": "bottom",
+			"selected_legend": {},
+			"display_name": false,
+			"mark_lines": true,
+			"show_legend": true,
+			"is_default_name": true,
+			"label_rotate": "horizontal"
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "c2182114-354f-42dc-ba3c-4b8c269c424c",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "77103a97-789a-4965-a936-51b5133095a3",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Date",
+							"function": "BUCKET-DATE",
+							"bucket_type": "MONTHS"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T10:37:16.286060+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T10:37:32.425923+00:00",
+		"is_favorite": null
+	},
+	"FormattingEnums": {
+		"id": "lineChart",
+		"name": "widget",
+		"slug": "c3419a51f5e94ef4",
+		"widget_type": "widget_line_chart_single",
+		"widget_configuration": {
+			"version": "default/v0",
+			"title": "",
+			"label_rotate": false,
+			"bar_gap": false,
+			"x_axis_number_of_character": 10,
+			"show_label": false,
+			"stacked": false,
+			"enums": {
+				"dimension0": {
+					"ABW": "testing enum"
+				}
+			},
+			"horizontal": false,
+			"selected_format": {
+				"metric": {
+					"maximum_fraction_digits": 4,
+					"minimum_fraction_digits": 4
+				}
+			},
+			"coloring": [
+				{
+					"color": "#55B458",
+					"index": 0
+				},
+				{
+					"color": "rgb(255,10,135)",
+					"index": 1
+				},
+				{
+					"color": "rgb(255,10,135)",
+					"index": 2
+				},
+				{
+					"color": "rgb(255,10,135)",
+					"index": 3
+				},
+				{
+					"color": "rgb(255,10,135)",
+					"index": 4
+				},
+				{
+					"color": "rgb(255,10,135)",
+					"index": 5
+				},
+				{
+					"color": "rgb(255,10,135)",
+					"index": 6
+				},
+				{
+					"color": "rgb(255,10,135)",
+					"index": 7
+				},
+				{
+					"color": "rgb(255,10,135)",
+					"index": 8
+				},
+				{
+					"color": "rgb(255,10,135)",
+					"index": 9
+				},
+				{
+					"color": "rgb(255,10,135)",
+					"index": 10
+				}
+			],
+			"selected_legend": {},
+			"legend_position": "bottom",
+			"legend_grid_width": 30,
+			"x_axis_short_label": false,
+			"no_data_message": "No Data",
+			"stacked_to_max": false,
+			"show_legend": true,
+			"label_position": "top"
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"rotation": 0,
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v0"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "74c30182-5cab-4adf-bec7-40a66ad95940",
+				"dataset_id": "0a2267fd-a1ac-4d9d-98e7-2fec4e36be2a",
+				"widget_id": "ba8670e4-e9fc-4581-b532-4b865d746aed",
+				"configuration": {
+					"version": "default/v0",
+					"metrics": [
+						{
+							"column": "new_cases",
+							"aggregation": "SUM"
+						},
+						{
+							"column": "total_deaths",
+							"aggregation": "SUM"
+						}
+					],
+					"order_by": [],
+					"last_value_column": null,
+					"limit": 10,
+					"dimensions": [
+						{
+							"column": "iso_code",
+							"function": "NO-CHANGE"
+						}
+					]
+				}
+			}
+		],
+		"created_by_id": "65853644-df0b-4ae6-b8ca-1d246fa6c619",
+		"created_at": "2022-04-25T06:33:05.894447+00:00",
+		"updated_by_id": "65853644-df0b-4ae6-b8ca-1d246fa6c619",
+		"updated_at": "2022-04-25T06:38:35.234480+00:00"
+	}
+}

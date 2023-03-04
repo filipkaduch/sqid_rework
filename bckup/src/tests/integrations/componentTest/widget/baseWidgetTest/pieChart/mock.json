@@ -1,0 +1,319 @@
+{
+	"baseRender":
+	{
+		"id": "pieChart",
+		"name": "widget",
+		"slug": "dcd947c29ea74f90",
+		"widget_type": "widget_pie_chart_basic",
+		"widget_configuration": {
+			"version": "default/v0",
+			"show_label": false,
+			"stacked": false,
+			"timeline": {
+				"interval": 30000,
+				"font_size": 24
+			},
+			"label_rotate": false,
+			"grid_range_min_max": null,
+			"no_data_message": "No Data",
+			"title": "",
+			"selected_legend": null,
+			"filter_datasets": [],
+			"enums": null,
+			"coloring": [
+				{
+					"color": "rgb(109,90,249)",
+					"index": 0
+				},
+				{
+					"color": "rgb(252,89,101)",
+					"index": 1
+				},
+				{
+					"color": "rgb(253,252,72)",
+					"index": 2
+				},
+				{
+					"color": "rgb(130,119,249)",
+					"index": 3
+				}
+			],
+			"legend_position": "bottom",
+			"filter_map": [],
+			"show_legend": true,
+			"selected_format": null
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			},
+			"size": {
+				"width": 1,
+				"height": 1
+			}
+		},
+		"filters": {
+			"version": "default/v0"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "0c53a988-3c0f-4a41-a5cf-801965a7ce7f",
+				"dataset_id": "bb4ca9f4-9e71-4fc8-bb97-dbb49880a105",
+				"widget_id": "da28894a-5641-4ea0-a7b2-3e0bcc8b75d1",
+				"configuration": {
+					"version": "default/v0",
+					"timeline": null,
+					"dimensions": [
+						{
+							"column": "Pokemon Name",
+							"function": "NO-CHANGE"
+						}
+					],
+					"last_value_column": null,
+					"order_by": [],
+					"ranking": null,
+					"metrics": [
+						{
+							"column": "Pokemon Id",
+							"aggregation": "COUNT"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "65853644-df0b-4ae6-b8ca-1d246fa6c619",
+		"created_at": "2021-11-19T09:53:56.434984+00:00",
+		"updated_by_id": "65853644-df0b-4ae6-b8ca-1d246fa6c619",
+		"updated_at": "2021-11-19T09:53:57.664355+00:00"
+	},
+	"Bucket":
+	{
+		"id": "pieChart",
+		"name": "widget",
+		"slug": "43add173a8b04b78",
+		"widget_type": "widget_pie_chart_basic",
+		"widget_configuration": {
+			"version": "default/v0",
+			"title": "",
+			"no_data_message": "No Data",
+			"selected_legend": {},
+			"coloring": [
+				{
+					"color": "#55B458",
+					"index": 0
+				},
+				{
+					"color": "#FF0A87",
+					"index": 1
+				},
+				{
+					"color": "rgb(30,85,236)",
+					"index": 2
+				},
+				{
+					"color": "rgb(255,173,10)",
+					"index": 3
+				},
+				{
+					"color": "rgb(237,29,29)",
+					"index": 4
+				},
+				{
+					"color": "rgb(110,82,184)",
+					"index": 5
+				},
+				{
+					"color": "rgb(255,163,210)",
+					"index": 6
+				},
+				{
+					"color": "rgb(191,227,193)",
+					"index": 7
+				},
+				{
+					"color": "rgb(170,191,248)",
+					"index": 8
+				},
+				{
+					"color": "rgb(255,224,163)",
+					"index": 9
+				},
+				{
+					"color": "rgb(248,170,170)",
+					"index": 10
+				}
+			],
+			"show_legend": true,
+			"legend_position": "bottom"
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			},
+			"rotation": 0,
+			"size": {
+				"width": 1,
+				"height": 1
+			}
+		},
+		"filters": {
+			"version": "default/v0"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "90ff906c-a858-4812-bcc0-1f922c726f4e",
+				"dataset_id": "0a2267fd-a1ac-4d9d-98e7-2fec4e36be2a",
+				"widget_id": "d0b7933f-e8ea-43ae-8b59-325e8d68be4b",
+				"configuration": {
+					"version": "default/v0",
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "total_cases",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "date",
+							"bucket_type": "MONTHS",
+							"function": "BUCKET-DATE"
+						}
+					],
+					"order_by": [],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "65853644-df0b-4ae6-b8ca-1d246fa6c619",
+		"created_at": "2022-04-22T12:58:00.963552+00:00",
+		"updated_by_id": "65853644-df0b-4ae6-b8ca-1d246fa6c619",
+		"updated_at": "2022-04-25T06:27:26.146886+00:00"
+	},
+	"FormattingEnums":
+	{
+		"id": "pieChart",
+		"name": "widget",
+		"slug": "c3419a51f5e94ef4",
+		"widget_type": "widget_pie_chart_basic",
+		"widget_configuration": {
+			"version": "default/v0",
+			"title": "",
+			"enums": {
+				"dimension0": {
+					"ARG": "testing enum"
+				}
+			},
+			"horizontal": false,
+			"selected_format": {
+				"metric": {
+					"maximum_fraction_digits": 4,
+					"minimum_fraction_digits": 4
+				}
+			},
+			"coloring": [
+				{
+					"color": "#55B458",
+					"index": 0
+				},
+				{
+					"color": "#FF0A87",
+					"index": 1
+				},
+				{
+					"color": "rgb(30,85,236)",
+					"index": 2
+				},
+				{
+					"color": "rgb(255,173,10)",
+					"index": 3
+				},
+				{
+					"color": "rgb(237,29,29)",
+					"index": 4
+				},
+				{
+					"color": "rgb(110,82,184)",
+					"index": 5
+				},
+				{
+					"color": "rgb(255,163,210)",
+					"index": 6
+				},
+				{
+					"color": "rgb(191,227,193)",
+					"index": 7
+				},
+				{
+					"color": "rgb(170,191,248)",
+					"index": 8
+				},
+				{
+					"color": "rgb(255,224,163)",
+					"index": 9
+				},
+				{
+					"color": "rgb(248,170,170)",
+					"index": 10
+				}
+			],
+			"selected_legend": {},
+			"legend_position": "bottom",
+			"no_data_message": "No Data",
+			"show_legend": true
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"rotation": 0,
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v0"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "74c30182-5cab-4adf-bec7-40a66ad95940",
+				"dataset_id": "0a2267fd-a1ac-4d9d-98e7-2fec4e36be2a",
+				"widget_id": "ba8670e4-e9fc-4581-b532-4b865d746aed",
+				"configuration": {
+					"version": "default/v0",
+					"metrics": [
+						{
+							"column": "total_deaths",
+							"aggregation": "SUM"
+						}
+					],
+					"order_by": [],
+					"last_value_column": null,
+					"limit": 10,
+					"dimensions": [
+						{
+							"column": "iso_code",
+							"function": "NO-CHANGE"
+						}
+					]
+				}
+			}
+		],
+		"created_by_id": "65853644-df0b-4ae6-b8ca-1d246fa6c619",
+		"created_at": "2022-04-25T06:33:05.894447+00:00",
+		"updated_by_id": "65853644-df0b-4ae6-b8ca-1d246fa6c619",
+		"updated_at": "2022-04-25T06:38:35.234480+00:00"
+	}
+}

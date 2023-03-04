@@ -1,0 +1,41 @@
+{
+	"baseRender": {
+		"rows":[
+			[
+				1609617.1935000047
+			]
+		],
+		"columns":[
+			{
+				"reference":"Metric1",
+				"data_type":"FLOAT"
+			}
+		]
+	},
+	"StepProps1": {
+		"rows": [
+			[
+				1609617.1935000047
+			]
+		],
+		"columns": [
+			{
+				"reference": "Metric1",
+				"data_type": "FLOAT"
+			}
+		]
+	},
+	"StepProps2": {
+		"rows":[
+			[
+				1609617.1935000047
+			]
+		],
+		"columns":[
+			{
+				"reference":"Metric1",
+				"data_type":"FLOAT"
+			}
+		]
+	}
+}

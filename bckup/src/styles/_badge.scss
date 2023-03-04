@@ -1,0 +1,13 @@
+@each $name, $color in $ts-theme-colors {
+	.badge-#{$name} {
+		color: get-value($color, 'text');
+		background-color: get-value($color, 'background');
+		border-color: get-value($color, 'background');
+	}
+
+	.badge-#{$name}-inverse {
+		color: get-value($color, 'background');
+		background-color: get-value($color, 'text');
+		border-color: get-value($color, 'text');
+	}
+}

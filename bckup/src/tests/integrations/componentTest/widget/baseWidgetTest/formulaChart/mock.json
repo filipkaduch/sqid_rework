@@ -1,0 +1,191 @@
+{
+	"baseRender":
+	{
+		"id":"formulaChart",
+		"name":"widget",
+		"slug":"6b40e5cd30b94a53",
+		"widget_type":"widget_text_formula",
+		"widget_configuration":{
+			"version":"default/v0",
+			"text_color":"dark",
+			"formula_type":"text",
+			"text_size":"paragraph",
+			"coloring":[
+				{
+					"color":"rgb(255,10,135)",
+					"index":0
+				}
+			],
+			"format":"{1}",
+			"scale":100
+		},
+		"layout_configuration":{
+			"version":"default/v0",
+			"size":{
+				"width":1,
+				"height":1
+			},
+			"position":{
+				"x":0,
+				"y":0,
+				"z":0
+			},
+			"rotation":0
+		},
+		"filters":{
+			"version":"default/v0"
+		},
+		"widget_data_configurations":[
+			{
+				"id":"9eb2089c-d93a-474e-a969-e2a40ba81289",
+				"dataset_id":"78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"widget_id":"1c10d06a-39d9-4ef7-b6f2-91920f47e17b",
+				"configuration":{
+					"version":"default/v0",
+					"last_value_column":false,
+					"dimensions":[
+
+					],
+					"limit":10,
+					"metrics":[
+						{
+							"column":"Open",
+							"aggregation":"SUM"
+						}
+					],
+					"order_by":[
+
+					]
+				}
+			}
+		],
+		"created_by_id":"ff968aff-acd6-4a89-ae7c-a0b5f8e48554",
+		"created_at":"2022-05-18T12:24:31.685447+00:00",
+		"updated_by_id":"ff968aff-acd6-4a89-ae7c-a0b5f8e48554",
+		"updated_at":"2022-05-18T12:24:37.701728+00:00"
+	},
+	"StepProps1":
+	{
+		"id": "formulaChart",
+		"name": "Formula",
+		"slug": "formula-371ce453a61d408c",
+		"widget_type": "widget_text_formula",
+		"widget_configuration": {
+			"version": "default/v0",
+			"scale": 50,
+			"display_name": false,
+			"is_default_name": true,
+			"format": "{1}",
+			"text_color": "light",
+			"formula_type": "button",
+			"text_size": "h2"
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "8241d2e8-41d3-4c65-8c7f-e98bbb25ae8b",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "58f8218c-cc99-4613-836b-6a60701c658d",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": false,
+					"metrics": [
+						{
+							"column":"Open",
+							"aggregation":"SUM"
+						}
+					],
+					"dimensions": [],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T14:45:38.687161+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T14:46:09.638917+00:00",
+		"is_favorite": null
+	},
+	"StepProps2": {
+		"id":"formulaChart",
+		"name":"widget",
+		"slug":"6b40e5cd30b94a53",
+		"widget_type":"widget_text_formula",
+		"widget_configuration":{
+			"version":"default/v0",
+			"formula_type":"notification",
+			"position":"flex-end",
+			"format":"{1}",
+			"text_color":"dark",
+			"text_size":"h1",
+			"coloring":[
+				{
+					"color":"rgb(255,10,135)",
+					"index":0
+				}
+			],
+			"scale":25
+		},
+		"layout_configuration":{
+			"version":"default/v0",
+			"size":{
+				"width":1,
+				"height":1
+			},
+			"position":{
+				"x":0,
+				"y":0,
+				"z":0
+			},
+			"rotation":0
+		},
+		"filters":{
+			"version":"default/v0"
+		},
+		"widget_data_configurations":[
+			{
+				"id":"9eb2089c-d93a-474e-a969-e2a40ba81289",
+				"dataset_id":"78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"widget_id":"1c10d06a-39d9-4ef7-b6f2-91920f47e17b",
+				"configuration":{
+					"version":"default/v0",
+					"metrics":[
+						{
+							"column":"Open",
+							"aggregation":"SUM"
+						}
+					],
+					"dimensions":[
+
+					],
+					"limit":10,
+					"last_value_column":false,
+					"order_by":[
+
+					]
+				}
+			}
+		],
+		"created_by_id":"ff968aff-acd6-4a89-ae7c-a0b5f8e48554",
+		"created_at":"2022-05-18T12:24:31.685447+00:00",
+		"updated_by_id":"ff968aff-acd6-4a89-ae7c-a0b5f8e48554",
+		"updated_at":"2022-05-18T12:32:25.153758+00:00"
+	}
+}

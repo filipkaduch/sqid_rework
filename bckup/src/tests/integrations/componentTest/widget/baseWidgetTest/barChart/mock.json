@@ -1,0 +1,210 @@
+{
+	"baseRender": {
+		"id": "barChart",
+		"name": "Bar chart",
+		"slug": "bar-chart-496d214cc5b04175",
+		"widget_type": "widget_column_chart_basic",
+		"widget_configuration": {
+			"version": "default/v0",
+			"legend_position": "bottom",
+			"selected_legend": {},
+			"display_name": false,
+			"tick_align_with_label": true,
+			"label_position": "top",
+			"is_default_name": true,
+			"label_rotate": "horizontal",
+			"bar_gap": true
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "587e411c-7dea-4aea-8457-1aa8b8ccf110",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "b1426eac-498a-4844-b767-d12be817ad82",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": false,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Ticker",
+							"function": "NO-CHANGE"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-27T12:37:35.464081+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-27T12:37:38.321165+00:00",
+		"is_favorite": null
+	},
+	"Bucket": {
+		"id": "barChart",
+		"name": "Bar chart",
+		"slug": "bar-chart-582daaf75490442e",
+		"widget_type": "widget_column_chart_basic",
+		"widget_configuration": {
+			"version": "default/v0",
+			"tick_align_with_label": true,
+			"label_rotate": "horizontal",
+			"bar_gap": true,
+			"label_position": "top",
+			"selected_legend": {},
+			"legend_position": "bottom",
+			"is_default_name": true,
+			"x_axis_number_of_character": 10,
+			"display_name": false
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"rotation": 0,
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v0"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "e5b6e6bd-5d17-4e02-9137-690705ac1015",
+				"dataset_id": "f9f44126-870c-4395-a56d-30d93830a307",
+				"catalog_item_id": null,
+				"widget_id": "e6516bb7-b38f-4739-8f7f-e6ea60d7c767",
+				"configuration": {
+					"version": "default/v0",
+					"last_value_column": null,
+					"order_by": [],
+					"dimensions": [
+						{
+							"column": "id",
+							"function": "BUCKET-VALUE",
+							"number_of_buckets": 17
+						}
+					],
+					"metrics": [
+						{
+							"column": "first_name",
+							"aggregation": "COUNT",
+							"custom_expression_enabled": false
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "e7b43e94-f605-4d13-aba7-0213307dc44d",
+		"created_at": "2023-02-09T12:38:16.180817+00:00",
+		"updated_by_id": "e7b43e94-f605-4d13-aba7-0213307dc44d",
+		"updated_at": "2023-02-09T12:38:54.470301+00:00",
+		"is_favorite": null
+	},
+	"FormattingEnums":
+	{
+		"id": "barChart",
+		"name": "Bar chart",
+		"slug": "bar-chart-4a0da27dd0d24ca8",
+		"widget_type": "widget_column_chart_basic",
+		"widget_configuration": {
+			"version": "default/v0",
+			"legend_position": "bottom",
+			"enums": {
+				"dimension0": {
+					"MMM": "Testing enum"
+				}
+			},
+			"selected_legend": {},
+			"display_name": false,
+			"tick_align_with_label": true,
+			"label_position": "top",
+			"is_default_name": true,
+			"selected_format": {
+				"metric": {
+					"style": "currency",
+					"currency": "EUR"
+				}
+			},
+			"label_rotate": "horizontal",
+			"bar_gap": true
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "899492cd-0f42-4947-b1bc-34e295e22cf5",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "adf00725-1a08-4c3c-845f-1b7df5b70f88",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": false,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Ticker",
+							"function": "NO-CHANGE"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-27T13:17:58.157876+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-27T13:18:56.261974+00:00",
+		"is_favorite": null
+	}
+}
+

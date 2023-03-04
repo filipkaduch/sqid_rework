@@ -1,0 +1,368 @@
+variables:
+  BUSINESS_VERSION: "14.3.0"
+  DOCKERFILE_CONTEXT_DIR: "."
+  DOCKERFILE_NAME: "docker/prod/Dockerfile"
+  DOCKERFILE_PLAYWRIGHT_NAME: "docker/playwright/Dockerfile"
+  APPLICATION_NAME: "tellstory/webapp"
+  BUILD_LATEST: "false"
+  LOCAL_SUPPRESSION_FILE: "dependency-check-suppression-list-local.xml"
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_BRANCH =~ /release-.*/'
+
+stages:
+  - .pre
+  - lint
+  - build
+  - push-test
+  - push
+  - test
+  - analyze
+  - release
+  - notify
+  - xray
+  - .post
+
+include:
+  - project: "engineering/ci/templates/docker-ci"
+    ref: master
+    file: "generic-build.yml"
+  - project: "engineering/ci/ondemand-testing"
+    ref: main
+    file: "xray/gitlab-xray-integration.yml"
+
+
+shellcheck:
+  interruptible: true
+  allow_failure: true
+
+version:
+  interruptible: true
+  variables:
+    RELEASE_BRANCH_PREFIX: "release-"
+  before_script:
+    # BUSINESS VERSION
+    # adapted from https://gitlab.ataccama.dev/engineering/ci/templates/business-version/-/blob/master/business-version.yml
+    - |
+      if ! [[ ${CI_COMMIT_REF_SLUG:0:8} == $RELEASE_BRANCH_PREFIX ]]; then
+        VERSION_SEPARATOR=$(echo $CI_COMMIT_REF_SLUG | tr -cd '[:alnum:].-' | cut -c1-20)
+        VERSION_SEPARATOR=$VERSION_SEPARATOR-
+      fi
+
+      TMP_VERSION=${BUSINESS_VERSION}.${VERSION_SEPARATOR}$(date -u +'%y%m%d')-${CI_PIPELINE_IID}-${CI_COMMIT_SHORT_SHA}
+      VERSION=$(echo ${TMP_VERSION} | tr -s '-')
+
+    # SUPPORT FOR TAGS
+    # adapted from https://gitlab.ataccama.dev/engineering/ci/templates/docker-ci/-/blob/master/generic-build.yml
+    - set -x
+    - apk add curl jq
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        VERSION="${CI_COMMIT_TAG##*-}"
+        PROJECT="$TAG_HARBOR_PROJECT"
+        RELEASE_TYPE="tagged"
+      else
+        VERSION=$VERSION
+        PROJECT="$ROLLING_HARBOR_PROJECT"
+        RELEASE_TYPE="rolling"
+      fi
+
+test:unit:
+  interruptible: true
+  stage: test
+  image:
+    name: node:16-alpine
+  before_script:
+    - yarn add vitest@0.28.4 @vue/test-utils@2.2.10 jsdom ts-jest
+  script:
+    - yarn unit-tests
+  artifacts:
+    when: always
+    paths:
+      - reports/report.xml
+    reports:
+      junit: reports/report.xml
+    expire_in: 1 week
+
+test:snapshot:
+  stage: test
+  image: $HARBOR_REPOSITORY/$PROJECT/$APPLICATION_NAME:$VERSION-playwright
+  variables:
+    CI: "1"
+    # this is not a secret, rather scoped Mapbox access token for development purposes
+    ATACCAMA_ONE_TELLSTORY_WEBAPP_DECKGL_KEY: "pk.eyJ1IjoiYXRhY2NhbWEtZGF0YXN0b3JpZXMiLCJhIjoiY2wwaThpemR3MDBhdDNqc2ViYjZlejRxOCJ9.WuFUtzdNPE_-OS9lIPnplA"
+  script:
+    - echo ""
+    - cd /app && yarn pw-snapTest || exit_code=$?
+    - mkdir ${CI_PROJECT_DIR}/artifacts
+    - mkdir ${CI_PROJECT_DIR}/artifacts/test-reports
+    - cp test-reports/ ${CI_PROJECT_DIR}/artifacts/test-reports/ -R
+    - cp test-results/ ${CI_PROJECT_DIR}/artifacts/ -R
+    - cp results.xml ${CI_PROJECT_DIR}/artifacts/ -R
+    - if [ $exit_code -ne 0 ]; then exit $exit_code; fi;
+  needs:
+    - push-image-playwright
+    - version
+  dependencies:
+    - push-image-playwright
+    - version
+  artifacts:
+    when: always
+    paths:
+      - ${CI_PROJECT_DIR}/artifacts/test-reports/
+      - ${CI_PROJECT_DIR}/artifacts/test-results/
+      - ${CI_PROJECT_DIR}/artifacts/results.xml
+    reports:
+      junit: ${CI_PROJECT_DIR}/artifacts/results.xml
+    expire_in: 1 week
+
+archive_test_results:
+  stage: xray
+  when: always
+  script:
+    - printenv | sort
+    - echo "Archiving the following test result files:"
+    - find . -wholename "reports/report.xml" -type f
+  artifacts:
+    when: always
+    expire_in: 2d
+    paths:
+      - "reports/report.xml"
+
+publish_results_to_xray:
+  stage: xray
+  when: always
+  needs:
+    - job: create_test_plan
+      artifacts: true
+      optional: true
+    - job: test:unit
+      artifacts: true # Get the packaged test result files from "archive_test_results"
+  variables:
+    XRAY_EXECUTION_SUMMARY: "$CI_PROJECT_NAME $SPACEPORT results - branch: $CI_COMMIT_REF_NAME"
+    XRAY_EXECUTION_DESCRIPTION: "ONE Desktop version: $TEST_PRODUCT_VERSION"
+    XRAY_EXECUTION_SPACEPORT: "$XRAY_EXECUTION_SPACEPORT"
+    XRAY_EXECUTION_LABELS: "ide-integration-tests;$XRAY_EXECUTION_LABELS"
+    XRAY_FIX_VERSION: "$BUSINESS_VERSION"
+    XRAY_NAMESPACE_OF_DEPLOY: "$ASSIGNED_NAMESPACE"
+    XRAY_TEST_RESULTS_REGEX: "**/report.xml"
+    XRAY_PLAN_KEY: '$XRAY_PLAN_KEY'
+    RUN_JOB: "true" # Run only this job from the gitlab-xray-integration.yml file
+
+create_test_plan:
+  stage: test
+  variables:
+    XRAY_FIX_VERSION: '$BUSINESS_VERSION'
+    XRAY_NAMESPACE_OF_DEPLOY: '$ASSIGNED_NAMESPACE'
+    RUN_JOB: 'true'
+  rules:
+    - if: $ATA_TEST_PLAN == null
+
+
+.build:
+  interruptible: true
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:v1.7.0-debug
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$HARBOR_REPOSITORY\":{\"username\":\"$HARBOR_USERNAME\",\"password\":\"$HARBOR_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - |
+      /kaniko/executor \
+        --context "$CI_PROJECT_DIR/$DOCKERFILE_CONTEXT_DIR" \
+        --dockerfile "$CI_PROJECT_DIR/$DOCKERFILE_CONTEXT_DIR/$DOCKERFILE_NAME" \
+        --no-push \
+        --cache=true \
+        --cache-copy-layers=true \
+        --cache-repo=$HARBOR_REPOSITORY/buildcache/$APPLICATION_NAME \
+        --destination image \
+        --tarPath $DOCKER_IMAGE_TAR_PATH \
+        --build-arg "ATACCAMA_ONE_TELLSTORY_WEBAPP_WIDGET_HASH=$CI_COMMIT_SHORT_SHA" \
+        --build-arg "ATACCAMA_ONE_TELLSTORY_WEBAPP_APP_BASE_URL=$WEBAPP_APP_BASE_URL" \
+        --build-arg "BUILD_ID=$VERSION" \
+        --build-arg=CI_COMMIT_SHA \
+        --label org.opencontainers.image.created=$CI_COMMIT_TIMESTAMP \
+        --label org.opencontainers.image.authors=$GITLAB_USER_EMAIL \
+        --label org.opencontainers.image.url=$CI_PROJECT_NAME \
+        --label org.opencontainers.image.documentation=$CI_PAGES_URL \
+        --label org.opencontainers.image.source=$CI_PROJECT_NAME \
+        --label org.opencontainers.image.version=$VERSION \
+        --label org.opencontainers.image.revision=$CI_COMMIT_SHA \
+        --label org.opencontainers.image.vendor=Ataccama \
+        --label org.opencontainers.image.licenses=? \
+        --label org.opencontainers.image.ref.name=$CI_COMMIT_REF_NAME \
+        --label org.opencontainers.image.title=$APPLICATION_NAME \
+        --label org.opencontainers.image.description=$APPLICATION_NAME
+  artifacts:
+    paths:
+      - $DOCKER_IMAGE_TAR_PATH
+
+
+build:amd64:
+  extends: .build
+  variables:
+    DOCKER_IMAGE_TAR_PATH: "image-amd64.tar"
+    WEBAPP_APP_BASE_URL: "/"
+  # only extending .build still takes `build` script from generic-build template
+  script:
+    - !reference [.build, script]
+
+build:arm64:
+  extends: .build
+  tags:
+    - arm-runner
+  variables:
+    DOCKER_IMAGE_TAR_PATH: "image-arm64.tar"
+    WEBAPP_APP_BASE_URL: "/"
+  # only extending .build still takes `build` script from generic-build template
+  script:
+    - !reference [ .build, script ]
+
+
+build-portal:amd64:
+  extends: .build
+  variables:
+    DOCKER_IMAGE_TAR_PATH: "image-portal-amd64.tar"
+    # This should not work according to documentation (inherited variable precedence)
+    # But for some reason it works when there is no `needs` or `dependencies`
+    # However, this variable is not critical for image build (it's only used in container metadata)
+    # https://docs.gitlab.com/ee/ci/variables/#pass-an-environment-variable-to-another-job
+    VERSION: $VERSION-portal
+    WEBAPP_APP_BASE_URL: "/datastories/"
+  # only extending .build still takes `build` script from generic-build template
+  script:
+    - !reference [ .build, script ]
+
+
+build-portal:arm64:
+  extends: .build
+  tags:
+    - arm-runner
+  variables:
+    DOCKER_IMAGE_TAR_PATH: "image-portal-arm64.tar"
+    # This should not work according to documentation (inherited variable precedence)
+    # But for some reason it works when there is no `needs` or `dependencies`
+    # However, this variable is not critical for image build (it's only used in container metadata)
+    # https://docs.gitlab.com/ee/ci/variables/#pass-an-environment-variable-to-another-job
+    VERSION: $VERSION-portal
+    WEBAPP_APP_BASE_URL: "/datastories/"
+  # only extending .build still takes `build` script from generic-build template
+  script:
+    - !reference [ .build, script ]
+
+
+build:playwright:
+  interruptible: true
+  stage: build
+  variables:
+    VERSION: $VERSION-playwright
+    WEBAPP_APP_BASE_URL: "/"
+  image:
+    name: gcr.io/kaniko-project/executor:v1.7.0-debug
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"$HARBOR_REPOSITORY\":{\"username\":\"$HARBOR_USERNAME\",\"password\":\"$HARBOR_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - |
+      /kaniko/executor \
+        --context "$CI_PROJECT_DIR/$DOCKERFILE_CONTEXT_DIR" \
+        --dockerfile "$CI_PROJECT_DIR/$DOCKERFILE_CONTEXT_DIR/$DOCKERFILE_PLAYWRIGHT_NAME" \
+        --no-push \
+        --cache=false \
+        --cache-copy-layers=false \
+        --cache-repo=$HARBOR_REPOSITORY/buildcache/$APPLICATION_NAME \
+        --destination image \
+        --tarPath "image-playwright.tar" \
+        --build-arg "ATACCAMA_ONE_TELLSTORY_WEBAPP_WIDGET_HASH=$CI_COMMIT_SHORT_SHA" \
+        --build-arg "ATACCAMA_ONE_TELLSTORY_WEBAPP_APP_BASE_URL=$WEBAPP_APP_BASE_URL" \
+        --label org.opencontainers.image.created=$CI_COMMIT_TIMESTAMP \
+        --label org.opencontainers.image.authors=$GITLAB_USER_EMAIL \
+        --label org.opencontainers.image.url=$CI_PROJECT_NAME \
+        --label org.opencontainers.image.documentation=$CI_PAGES_URL \
+        --label org.opencontainers.image.source=$CI_PROJECT_NAME \
+        --label org.opencontainers.image.version=$VERSION \
+        --label org.opencontainers.image.revision=$CI_COMMIT_SHA \
+        --label org.opencontainers.image.vendor=Ataccama \
+        --label org.opencontainers.image.licenses=? \
+        --label org.opencontainers.image.ref.name=$CI_COMMIT_REF_NAME \
+        --label org.opencontainers.image.title=$APPLICATION_NAME \
+        --label org.opencontainers.image.description=$APPLICATION_NAME
+  artifacts:
+    paths:
+      - image-playwright.tar
+
+push-image:
+  interruptible: true
+  extends: .docker-push
+  needs:
+    - build:amd64
+    - build:arm64
+    - version
+  dependencies:
+    - build:amd64
+    - build:arm64
+    - version
+
+
+push-image-portal:
+    interruptible: true
+    extends: .docker-push
+    variables:
+      DOCKER_IMAGE_TAR_PATH_NO_PLATFORM: "image-portal"
+      DOCKER_IMAGE_TAG_SUFFIX: "-portal"
+    needs:
+      - build-portal:amd64
+      - build-portal:arm64
+      - version
+    dependencies:
+      - build-portal:amd64
+      - build-portal:arm64
+      - version
+
+push-image-playwright:
+  interruptible: true
+  stage: push-test
+  image:
+   name: harbor.ataccama.dev/cache-quay/skopeo/stable:v1.5.0
+   entrypoint: [""]
+  before_script:
+   - skopeo login -u "$HARBOR_USERNAME" -p "$HARBOR_PASSWORD" "$HARBOR_REPOSITORY"
+  script:
+   - echo "Pushing image $HARBOR_REPOSITORY/$PROJECT/$APPLICATION_NAME:$VERSION-playwright"
+   - skopeo copy "docker-archive:./image-playwright.tar" "docker://$HARBOR_REPOSITORY/$PROJECT/$APPLICATION_NAME:$VERSION-playwright"
+   - echo "DIGEST_ID=$(skopeo inspect --format "{{ .Digest }}" "docker://$HARBOR_REPOSITORY/$PROJECT/$APPLICATION_NAME:$VERSION-playwright")" >> build.env
+   - cat build.env
+  needs:
+   - build:playwright
+   - version
+  dependencies:
+   - build:playwright
+   - version
+  artifacts:
+   reports:
+     dotenv: build.env
+
+
+# We push earlier in the pipeline, so we mute this step at the end
+docker:push:
+  rules:
+    - when: never
+
+## Adapted from one-metadata-frontend, guide: https://www.notion.so/ataccama/How-to-work-with-dependency-security-check-ee3db75db31d4babb209ac6471de61cb
+dependency-security-check:
+  stage: .post
+  image: harbor.ataccama.dev/red-team/dep-scan:final
+  script:
+    # Load global suppression list to ignore false positive vulnerability
+    - curl https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.ataccama.dev/engineering/gitlab/dependency-check/-/raw/main/suppression-list-js-1.xml --output ${CI_PROJECT_DIR}/dependency-check-suppression-list-global.xml
+    # FailOnCSVSS attribute set score when you want to fail pipeline
+    # Local suppression list can be added using another --suppression argument, for example: --suppression dependency-check-suppression-list-local.xml
+    - dependency-check --scan "./yarn.lock" --failOnCVSS 7 --yarn /usr/local/bin/yarn --disableNodeJS --disableRetireJS --nodeAuditSkipDevDependencies --project "$CI_PROJECT_NAME" --suppression ${CI_PROJECT_DIR}/dependency-check-suppression-list-global.xml --suppression dependency-check-suppression-list-local.xml
+  artifacts:
+    when: always
+    paths:
+      - 'dependency-check-report.html'

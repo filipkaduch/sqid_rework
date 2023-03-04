@@ -1,0 +1,122 @@
+{
+	"baseRender":
+	{
+		"id": "countryMap",
+		"name": "Country map",
+		"slug": "country-map-de9bad21b2144e2c",
+		"widget_type": "widget_country_map_new",
+		"widget_configuration": {
+			"version": "default/v0",
+			"is_default_name": true,
+			"display_name": false
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "5706f9a0-e722-4b96-91b5-f8ac01922960",
+				"dataset_id": "d1ade8da-4e83-4f88-b6d5-a3b2ed446c66",
+				"catalog_item_id": null,
+				"widget_id": "0b542153-fed2-4082-b4aa-5575db4bb49e",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "minutesDuration",
+							"aggregation": "SUM",
+							"custom_expression_enabled": false
+						}
+					],
+					"dimensions": [
+						{
+							"column": "age",
+							"function": "NO-CHANGE"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T13:55:23.779877+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T13:58:51.387541+00:00",
+		"is_favorite": null
+	},
+	"Limit":
+	{
+		"id": "countryMap",
+		"name": "Country map",
+		"slug": "country-map-de9bad21b2144e2c",
+		"widget_type": "widget_country_map_new",
+		"widget_configuration": {
+			"version": "default/v0",
+			"is_default_name": true,
+			"display_name": false
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "5706f9a0-e722-4b96-91b5-f8ac01922960",
+				"dataset_id": "d1ade8da-4e83-4f88-b6d5-a3b2ed446c66",
+				"catalog_item_id": null,
+				"widget_id": "0b542153-fed2-4082-b4aa-5575db4bb49e",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "minutesDuration",
+							"aggregation": "SUM",
+							"custom_expression_enabled": false
+						}
+					],
+					"dimensions": [
+						{
+							"column": "age",
+							"function": "NO-CHANGE"
+						}
+					],
+					"limit": 30
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T13:55:23.779877+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T14:27:46.421358+00:00",
+		"is_favorite": null
+	}
+}

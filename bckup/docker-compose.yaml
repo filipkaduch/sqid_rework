@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  app:
+    image: node:16-alpine
+    ports:
+      - "8080:80/tcp"
+    command: ash -c "apk add python3 make g++ git && yarn && yarn serve --port 80 --host 0.0.0.0"
+    volumes:
+      - "./:/opt/app"
+    working_dir: "/opt/app"

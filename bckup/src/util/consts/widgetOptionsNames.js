@@ -1,0 +1,66 @@
+export const widgetOptionName = Object.freeze({
+	STACKED_LABEL_SUM: 'stackedLabelSum',
+	TICK_ALIGN_WITH_LABEL: 'tickAlignWithLabel',
+	CONNECT_UNDEFINED: 'connectUndefined',
+	AVERAGE_LINE_BUCKETING: 'averageLineBucketing',
+	LABEL_POSITION: 'labelPosition',
+	LIMIT_RANGE: 'limitRange',
+	LABEL_ROTATE: 'labelRotate',
+	VERTICAL_LABEL: 'verticalLabel',
+	STACKED: 'stacked',
+	STACKED_TO_MAX: 'stackedToMax',
+	MARK_LINES: 'markLines',
+	LEGEND_POSITION: 'legendPosition',
+	LEGEND_GRID_WIDTH: 'legendGridWidth',
+	HIDE_LEGEND: 'hideLegend',
+	X_AXIS_NUMBER_OF_CHARACTERS: 'xAxisNumberOfCharacter',
+	X_AXIS_SHORT_LABEL: 'xAxisShortLabel',
+	COLOR_SCALE_POSITION: 'colorScalePosition',
+	SET_GREEN_COLOR_SCALE: 'setGreenColorScale',
+	SET_PLASMA_COLOR_SCALE: 'setPlasmaColorScale',
+	MAP_OPTIONS: 'mapOptions',
+	SHOW_LEGEND: 'showLegend',
+	SMOOTH_LINE: 'smoothLine',
+	SELECTED_LEGEND: 'selectedLegend',
+	SHOW_LABEL: 'showLabel',
+	SHOW_LAST: 'showLast',
+	SHOW_MIN: 'showMin',
+	SHOW_MAX: 'showMax',
+	SWITCH_TO_LOG: 'switchToLog',
+	GRAPH_SYMBOLS: 'graphSymbols',
+	GRID_BORDER: 'gridBorder',
+	TITLE: 'title',
+	DISPLAY_NAME: 'displayName',
+	HORIZONTAL: 'horizontal',
+	COLORING: 'coloring',
+	COLORS: 'colors',
+	SHOW_COLOR_SCALE: 'showColorScale',
+	TEXT: 'text',
+	FORMAT: 'format',
+	URL: 'url',
+	SELECTED_FORMAT: 'selectedFormat',
+	HORIZONTAL_FLIP: 'horizontalFlip',
+	BAR_GAP: 'barGap',
+	SHOW_AXIS_POINTER: 'showAxisPointer',
+	MINOR_GRID_LINES: 'minorGridLines',
+	TEXT_CONVERTED: 'textConverted',
+	TEXT_COLOR: 'textColor',
+	TEXT_SIZE: 'textSize',
+	DRAG_WITHOUT_OVERLAY: 'dragWithoutOverlay',
+	AVERAGE_LINE_ALL: 'averageLineAll',
+	ENUMS: 'enums',
+	X_AXIS_NAME: 'xAxisName',
+	Y_AXIS_NAME: 'yAxisName',
+	SHOW_X_AXIS_NAME: 'showXAxisName',
+	SHOW_Y_AXIS_NAME: 'showYAxisName'
+});
+
+export const filterWidgetOptions = {
+	FILTER_DATASETS: 'filterDatasets',
+	FILTER_MAP: 'filterMap'
+};
+
+export const widgetOptionState = Object.freeze({
+	DISABLED: 'disabled'
+});
+

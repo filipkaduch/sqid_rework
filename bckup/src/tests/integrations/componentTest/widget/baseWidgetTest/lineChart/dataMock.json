@@ -1,0 +1,201 @@
+{
+	"baseRender": {
+		"rows": [
+			[
+				"\"Greninja\"",
+				2
+			],
+			[
+				"\"Corviknight\"",
+				2
+			],
+			[
+				"\"Dhelmise\"",
+				1
+			],
+			[
+				"\"Woobat\"",
+				1
+			],
+			[
+				"\"Xerneas\"",
+				1
+			],
+			[
+				"\"Octillery\"",
+				1
+			],
+			[
+				"\"Lapras\"",
+				2
+			],
+			[
+				"\"Anorith\"",
+				1
+			],
+			[
+				"\"Wingull\"",
+				1
+			],
+			[
+				"\"Runerigus\"",
+				1
+			]
+		],
+		"columns": [
+			{
+				"reference": "Dimension1",
+				"data_type": "TEXT"
+			},
+			{
+				"reference": "Metric1",
+				"data_type": "INT"
+			}
+		]
+	},
+	"FormattingEnums": {
+		"rows": [
+			[
+				"ABW",
+				31835,
+				51480
+			],
+			[
+				"AFG",
+				159303,
+				2222863
+			],
+			[
+				"AGO",
+				95220,
+				442057
+			],
+			[
+				"AIA",
+				2187,
+				370
+			],
+			[
+				"ALB",
+				241512,
+				1024599
+			],
+			[
+				"AND",
+				32201,
+				62959
+			],
+			[
+				"ARE",
+				816945,
+				766750
+			],
+			[
+				"ARG",
+				7576335,
+				37838683
+			],
+			[
+				"ARM",
+				349329,
+				2146698
+			],
+			[
+				"ATG",
+				5741,
+				21891
+			]
+		],
+		"columns": [
+			{
+				"reference": "Dimension1",
+				"data_type": "TEXT"
+			},
+			{
+				"reference": "Metric1",
+				"data_type": "FLOAT"
+			},
+			{
+				"reference": "Metric2",
+				"data_type": "FLOAT"
+			}
+		]
+	},
+	"Bucket": {
+		"rows": [
+			[
+				[
+					1,
+					143
+				],
+				0,
+				143
+			],
+			[
+				[
+					143,
+					285
+				],
+				1,
+				143
+			],
+			[
+				[
+					285,
+					427
+				],
+				2,
+				143
+			],
+			[
+				[
+					427,
+					569
+				],
+				3,
+				142
+			],
+			[
+				[
+					569,
+					711
+				],
+				4,
+				143
+			],
+			[
+				[
+					711,
+					853
+				],
+				5,
+				143
+			],
+			[
+				[
+					853,
+					995
+				],
+				6,
+				143
+			]
+		],
+		"columns": [
+			{
+				"reference": "Dimension1",
+				"data_type": [
+					"INT",
+					"INT"
+				]
+			},
+			{
+				"reference": "Dimension1_bucket_number",
+				"data_type": "INT"
+			},
+			{
+				"reference": "Metric1",
+				"data_type": "INT"
+			}
+		]
+	}
+}

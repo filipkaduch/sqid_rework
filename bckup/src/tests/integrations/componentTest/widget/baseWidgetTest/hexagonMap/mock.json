@@ -1,0 +1,151 @@
+{
+	"baseRender": {
+		"id": "hexagonMap",
+		"name": "Hexagon map",
+		"slug": "hexagon-map-88886bb4ff754b84",
+		"widget_type": "widget_hexagon_map",
+		"widget_configuration": {
+			"version": "default/v0",
+			"map_options": {
+				"zoom": 8.158619792552674,
+				"pitch": 0,
+				"center": {
+					"lat": 40.71736647172915,
+					"lng": -73.69208130555185
+				},
+				"radius": 100,
+				"bearing": 0,
+				"coverage": 100,
+				"elevation": 250
+			},
+			"is_default_name": true,
+			"display_name": false
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "b2546d2a-31fe-47c8-934a-92c656e67dad",
+				"dataset_id": "d1ade8da-4e83-4f88-b6d5-a3b2ed446c66",
+				"catalog_item_id": null,
+				"widget_id": "4873c443-fd33-42bf-a757-e8ed9d98ca79",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "minutesDuration",
+							"aggregation": "SUM",
+							"custom_expression_enabled": false
+						}
+					],
+					"dimensions": [
+						{
+							"zoom": 16,
+							"column": "pickup_longitude",
+							"function": "GEO-POI-GRID",
+							"latitude_column_name": "pickup_latitude",
+							"longitude_column_name": "pickup_longitude"
+						}
+					],
+					"limit": 1000
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T13:20:30.441938+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T13:23:20.720020+00:00",
+		"is_favorite": null
+	},
+	"StepPropsHigh":
+	{
+		"id": "hexagonMap",
+		"name": "Hexagon map",
+		"slug": "hexagon-map-88886bb4ff754b84",
+		"widget_type": "widget_hexagon_map",
+		"widget_configuration": {
+			"version": "default/v0",
+			"map_options": {
+				"zoom": 5.0812594258080415,
+				"pitch": 0,
+				"center": {
+					"lat": 40.68397488643893,
+					"lng": -72.23222394048899
+				},
+				"radius": 20000,
+				"bearing": 0,
+				"coverage": 100,
+				"elevation": 1000
+			},
+			"is_default_name": true,
+			"display_name": false
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "b2546d2a-31fe-47c8-934a-92c656e67dad",
+				"dataset_id": "d1ade8da-4e83-4f88-b6d5-a3b2ed446c66",
+				"catalog_item_id": null,
+				"widget_id": "4873c443-fd33-42bf-a757-e8ed9d98ca79",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "minutesDuration",
+							"aggregation": "SUM",
+							"custom_expression_enabled": false
+						}
+					],
+					"dimensions": [
+						{
+							"zoom": 16,
+							"column": "pickup_longitude",
+							"function": "GEO-POI-GRID",
+							"latitude_column_name": "pickup_latitude",
+							"longitude_column_name": "pickup_longitude"
+						}
+					],
+					"limit": 1000
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T13:20:30.441938+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T13:28:03.827889+00:00",
+		"is_favorite": null
+	}
+}

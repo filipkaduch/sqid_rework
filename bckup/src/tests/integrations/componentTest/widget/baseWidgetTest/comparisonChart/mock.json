@@ -1,0 +1,213 @@
+{
+	"baseRender":
+	{
+		"id": "comparisonChart",
+		"name": "Comparison chart",
+		"slug": "comparison-chart-185de99558b14fc7",
+		"widget_type": "widget_comparison_chart",
+		"widget_configuration": {
+			"version": "default/v0",
+			"legend_position": "bottom",
+			"selected_legend": {},
+			"display_name": false,
+			"show_legend": true,
+			"is_default_name": true
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "318f70ec-2ead-4ce8-b10e-b872e04f2009",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "27cb9b95-c45f-4d5f-b294-5b5f526e07c6",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": false,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Ticker",
+							"function": "NO-CHANGE"
+						}
+					],
+					"limit": 3
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T10:12:04.153518+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T10:12:05.250946+00:00",
+		"is_favorite": null
+	},
+	"FormattingEnums":
+	{
+		"id": "comparisonChart",
+		"name": "Comparison chart",
+		"slug": "comparison-chart-185de99558b14fc7",
+		"widget_type": "widget_comparison_chart",
+		"widget_configuration": {
+			"version": "default/v0",
+			"legend_position": "bottom",
+			"enums": {
+				"dimension0": {
+					"MMM": "testing enum",
+					"2021-12-15T00:00:00": ""
+				}
+			},
+			"selected_legend": {},
+			"display_name": false,
+			"show_legend": true,
+			"is_default_name": true,
+			"selected_format": {
+				"metric": null,
+				"x_axis": {
+					"month": "long"
+				}
+			}
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "318f70ec-2ead-4ce8-b10e-b872e04f2009",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "27cb9b95-c45f-4d5f-b294-5b5f526e07c6",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Ticker",
+							"function": "NO-CHANGE",
+							"bucket_type": "WEEKS"
+						}
+					],
+					"limit": 3
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T10:12:04.153518+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T10:21:57.138057+00:00",
+		"is_favorite": null
+	},
+	"Bucket":
+	{
+		"id": "comparisonChart",
+		"name": "Comparison chart",
+		"slug": "comparison-chart-185de99558b14fc7",
+		"widget_type": "widget_comparison_chart",
+		"widget_configuration": {
+			"version": "default/v0",
+			"legend_position": "bottom",
+			"enums": {
+				"dimension0": {
+					"2021-12-15T00:00:00": ""
+				}
+			},
+			"selected_legend": {},
+			"display_name": false,
+			"show_legend": true,
+			"is_default_name": true,
+			"selected_format": {
+				"metric": null,
+				"x_axis": {
+					"month": "long"
+				}
+			}
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "318f70ec-2ead-4ce8-b10e-b872e04f2009",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "27cb9b95-c45f-4d5f-b294-5b5f526e07c6",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Date",
+							"function": "BUCKET-DATE",
+							"bucket_type": "WEEKS"
+						}
+					],
+					"limit": 3
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T10:12:04.153518+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T10:19:15.347500+00:00",
+		"is_favorite": null
+	}
+}

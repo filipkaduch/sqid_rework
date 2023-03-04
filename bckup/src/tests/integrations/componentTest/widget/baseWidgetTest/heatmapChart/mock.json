@@ -1,0 +1,208 @@
+{
+	"baseRender":
+	{
+		"id": "heatmapChart",
+		"name": "Heatmap chart",
+		"slug": "heatmap-chart-1352ba704e9948b9",
+		"widget_type": "widget_heatmap_chart",
+		"widget_configuration": {
+			"version": "default/v0",
+			"display_name": false,
+			"label_rotate": "horizontal",
+			"color_scale_position": "bottom",
+			"is_default_name": true
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "09600086-2105-49a5-8dbc-7d684457bb11",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "a3d71070-d65c-4ad0-94e2-de7fadb5eddc",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": false,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Date",
+							"function": "NO-CHANGE"
+						},
+						{
+							"column": "Ticker",
+							"function": "NO-CHANGE"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T10:25:46.952888+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T10:25:48.196004+00:00",
+		"is_favorite": null
+	},
+	"Bucket": {
+		"id": "heatmapChart",
+		"name": "Heatmap chart",
+		"slug": "heatmap-chart-1352ba704e9948b9",
+		"widget_type": "widget_heatmap_chart",
+		"widget_configuration": {
+			"version": "default/v0",
+			"display_name": false,
+			"label_rotate": "horizontal",
+			"color_scale_position": "bottom",
+			"is_default_name": true
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "09600086-2105-49a5-8dbc-7d684457bb11",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "a3d71070-d65c-4ad0-94e2-de7fadb5eddc",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Date",
+							"function": "BUCKET-DATE",
+							"bucket_type": "MONTHS"
+						},
+						{
+							"column": "Ticker",
+							"function": "NO-CHANGE"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T10:25:46.952888+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T10:29:28.157476+00:00",
+		"is_favorite": null
+	},
+	"FormattingEnums": {
+		"id": "heatmapChart",
+		"name": "Heatmap chart",
+		"slug": "heatmap-chart-1352ba704e9948b9",
+		"widget_type": "widget_heatmap_chart",
+		"widget_configuration": {
+			"version": "default/v0",
+			"enums": {
+				"dimension1": {
+					"ABMD": "Testing enum"
+				}
+			},
+			"selected_format": {
+				"x_axis": {
+					"year": "numeric",
+					"month": "long"
+				}
+			},
+			"display_name": false,
+			"label_rotate": "horizontal",
+			"color_scale_position": "bottom",
+			"is_default_name": true
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "09600086-2105-49a5-8dbc-7d684457bb11",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "a3d71070-d65c-4ad0-94e2-de7fadb5eddc",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Date",
+							"function": "BUCKET-DATE",
+							"bucket_type": "MONTHS"
+						},
+						{
+							"column": "Ticker",
+							"function": "NO-CHANGE"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T10:25:46.952888+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T10:32:52.673687+00:00",
+		"is_favorite": null
+	}
+}

@@ -1,0 +1,122 @@
+{
+	"baseRender": {
+		"rows": [
+			[
+				"Unknown",
+				1193291841
+			],
+			[
+				"Male",
+				1812377405
+			],
+			[
+				"Female",
+				2005194354
+			]
+		],
+		"columns": [
+			{
+				"reference": "Dimension1",
+				"data_type": "TEXT"
+			},
+			{
+				"reference": "Metric1",
+				"data_type": "INT"
+			}
+		]
+	},
+	"TwoDimensions": {
+		"rows":[
+			[
+				"Male",
+				62,
+				30
+			],
+			[
+				"Male",
+				65,
+				83
+			],
+			[
+				"Unknown",
+				34,
+				1
+			],
+			[
+				"Unknown",
+				28,
+				56
+			],
+			[
+				"Male",
+				40,
+				58
+			],
+			[
+				"Female",
+				27,
+				55
+			],
+			[
+				"Female",
+				28,
+				75
+			],
+			[
+				"Male",
+				87,
+				66
+			],
+			[
+				"Female",
+				65,
+				72
+			],
+			[
+				"Female",
+				33,
+				83
+			]
+		],
+		"columns":[
+			{
+				"reference":"Dimension1",
+				"data_type":"TEXT"
+			},
+			{
+				"reference":"Dimension2",
+				"data_type":"INT"
+			},
+			{
+				"reference":"Metric1",
+				"data_type":"INT"
+			}
+		]
+	},
+	"StepProps": {
+		"rows":[
+			[
+				"Unknown",
+				4114
+			],
+			[
+				"Male",
+				6458
+			],
+			[
+				"Female",
+				7183
+			]
+		],
+		"columns":[
+			{
+				"reference":"Dimension1",
+				"data_type":"TEXT"
+			},
+			{
+				"reference":"Metric1",
+				"data_type":"INT"
+			}
+		]
+	}
+}

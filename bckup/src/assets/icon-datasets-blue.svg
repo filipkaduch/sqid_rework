@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21.176" height="18" viewBox="0 0 21.176 18">
+	<defs>
+		<style>.nav-icon-a{fill:#1357e9}</style>
+	</defs>
+	<path class="nav-icon-a"
+				d="M8.471-11.529h7.412v-2.118H8.471Zm-2.118,0v-2.118H2.118v2.118Zm2.118-6.353v2.118h7.412v-2.118Zm-2.118,0H2.118v2.118H6.353ZM8.471-7.294h7.412V-9.412H8.471Zm-2.118,0V-9.412H2.118v2.118ZM0-20H18V-5.176H0Zm19.176,3.176h2V-2h-18V-4.118h16Z"
+				transform="translate(0 20)"/>
+</svg>

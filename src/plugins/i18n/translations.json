@@ -1,0 +1,17 @@
+{
+	"en": {
+		"version": {
+			"name": "Version",
+			"platformVersion": "Platform version",
+			"webappVersion": "Webapp version",
+			"copyVersion": "Copy version number",
+			"copySettingPlatform": "Copy platform setting",
+			"copySettingWebapp": "Copy webapp setting",
+			"info": "Version information"
+		},
+		"title": "Security domain ontoogy query machine"
+	},
+	"sk": {
+		"t_login": "Prihlasenie"
+	}
+}

@@ -1,0 +1,75 @@
+{
+	"baseRender": {
+		"id": "heroImage",
+		"name": "Hero image",
+		"slug": "hero-image-49969ab6ef754939",
+		"widget_type": "widget_hero_image",
+		"widget_configuration": {
+			"version": "default/v0",
+			"text_converted": true,
+			"display_name": false,
+			"text": "<p class=\"ds-text-paragraph\"></p>",
+			"background_size": "contain",
+			"is_default_name": true,
+			"text_color": "dark",
+			"text_size": "h2"
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-27T12:46:35.445858+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-27T12:46:47.020534+00:00",
+		"is_favorite": null
+	},
+	"StepProps": {
+		"id": "heroImage",
+		"name": "widget",
+		"slug": "993009310dab420c",
+		"widget_type": "widget_hero_image",
+		"widget_configuration": {
+			"version": "default/v0",
+			"url": "https://static1.srcdn.com/wordpress/wp-content/uploads/2020/11/tim-and-eric-mind-blown.jpg?q=50&fit=crop&w=960&h=500&dpr=1.5",
+			"text_color": "light",
+			"text_size": "h1",
+			"format": "<p><strong><em>TEST</em></strong></p>"
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			},
+			"rotation": 0
+		},
+		"filters": {
+			"version": "default/v0"
+		},
+		"widget_data_configurations": [
+		],
+		"created_by_id": "ff968aff-acd6-4a89-ae7c-a0b5f8e48554",
+		"created_at": "2022-05-18T12:45:28.617617+00:00",
+		"updated_by_id": "ff968aff-acd6-4a89-ae7c-a0b5f8e48554",
+		"updated_at": "2022-05-18T12:53:32.899539+00:00"
+	}
+}

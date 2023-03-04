@@ -1,0 +1,210 @@
+{
+	"baseRender": {
+		"id": "bubbleChart",
+		"name": "Bubble chart",
+		"slug": "bubble-chart-4da0d11d962d4607",
+		"widget_type": "widget_bubble_chart",
+		"widget_configuration": {
+			"version": "default/v0",
+			"label_rotate": "horizontal",
+			"is_default_name": true,
+			"display_name": false
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "d6c49803-0dbe-4426-a03e-1811319d6a09",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "6d9b49d2-4ed6-42c7-9eba-a95f61863b93",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": false,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Ticker",
+							"function": "NO-CHANGE"
+						},
+						{
+							"column": "Date",
+							"function": "NO-CHANGE"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T08:32:41.371008+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T08:32:42.922371+00:00",
+		"is_favorite": null
+	},
+	"Bucket": {
+		"id": "bubbleChart",
+		"name": "Bubble chart",
+		"slug": "bubble-chart-a33510cc8ea24164",
+		"widget_type": "widget_bubble_chart",
+		"widget_configuration": {
+			"version": "default/v0",
+			"display_name": false,
+			"label_rotate": "horizontal",
+			"coloring": {
+				"metric0": "rgb(110,82,184)",
+				"dimension2": {
+					"0 - 122740200": "rgb(110,82,184)"
+				}
+			},
+			"is_default_name": true
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "fb15738c-7cf8-4cb4-9942-79edd9a65b1c",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "df266e57-29e8-4123-bb6c-8a5443aad3cf",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": null,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Ticker",
+							"function": "NO-CHANGE"
+						},
+						{
+							"column": "Date",
+							"function": "BUCKET-DATE",
+							"bucket_type": "WEEKS"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T09:29:55.019674+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T09:31:31.791620+00:00",
+		"is_favorite": null
+	},
+	"FormattingEnums":
+	{
+		"id": "bubbleChart",
+		"name": "Bubble chart",
+		"slug": "bubble-chart-4da0d11d962d4607",
+		"widget_type": "widget_bubble_chart",
+		"widget_configuration": {
+			"version": "default/v0",
+			"enums": {
+				"dimension0": {
+					"ABBV": "Enum testing"
+				}
+			},
+			"selected_format": {
+				"y_axis": {
+					"year": "numeric",
+					"month": "long"
+				}
+			},
+			"display_name": false,
+			"label_rotate": "horizontal",
+			"is_default_name": true
+		},
+		"layout_configuration": {
+			"version": "default/v0",
+			"size": {
+				"width": 1,
+				"height": 1
+			},
+			"rotation": 0,
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		},
+		"filters": {
+			"version": "default/v1"
+		},
+		"widget_data_configurations": [
+			{
+				"id": "d6c49803-0dbe-4426-a03e-1811319d6a09",
+				"dataset_id": "78ae14bf-453c-4cb1-bb96-b68c2e0e713e",
+				"catalog_item_id": null,
+				"widget_id": "6d9b49d2-4ed6-42c7-9eba-a95f61863b93",
+				"configuration": {
+					"version": "default/v0",
+					"order_by": [],
+					"last_value_column": false,
+					"metrics": [
+						{
+							"column": "Open",
+							"aggregation": "SUM"
+						}
+					],
+					"dimensions": [
+						{
+							"column": "Ticker",
+							"function": "NO-CHANGE"
+						},
+						{
+							"column": "Date",
+							"function": "NO-CHANGE"
+						}
+					],
+					"limit": 10
+				}
+			}
+		],
+		"created_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"created_at": "2023-02-23T08:32:41.371008+00:00",
+		"updated_by_id": "2195a681-9d6f-44b5-9cb9-9da8b635cf5f",
+		"updated_at": "2023-02-23T09:20:41.628090+00:00",
+		"is_favorite": null
+	}
+}
