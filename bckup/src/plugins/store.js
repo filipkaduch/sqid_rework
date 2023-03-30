@@ -7,9 +7,9 @@ import * as widget from '@/modules/widget/store';
 
 import {createStore} from 'vuex';
 
-import appLoading from '@/store/appLoading';
+import appLoading from '@/store/util/appLoading';
 import dependencies from '@/store/dependencies';
-import error from '@/store/error';
+import error from '@/store/util/error';
 import flashMessages from '@/store/flashMessages';
 
 // TODO: test this import.meta

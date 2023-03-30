@@ -1,0 +1,74 @@
+$focus-color: map-get($app-colors, 'interaction-200');
+
+$app-button-variants: (
+'primary': (
+'text': map-get($app-colors, 'white'),
+'disabled-text': map-get($app-colors, 'white'),
+'bg': map-get($app-colors, 'primary'),
+'border': map-get($app-colors, 'primary'),
+'disabled': map-get($app-colors, 'display-content-300'),
+'hover': map-get($app-colors, 'primary-600')
+),
+'secondary': (
+'text': map-get($app-colors, 'display-content-700'),
+'disabled-text': map-get($app-colors, 'display-content-400'),
+'bg': map-get($app-colors, 'white'),
+'border': 1px solid map-get($app-colors, 'separate-content-400'),
+'disabled': map-get($app-colors, 'white'),
+'hover': map-get($app-colors, 'separate-content-100')
+),
+'ghost': (
+'text': map-get($app-colors, 'display-content-700'),
+'disabled-text': map-get($app-colors, 'display-content-400'),
+'bg': transparent,
+'border': transparent,
+'disabled': transparent,
+'hover': rgba(87, 114, 127, 0.13)
+),
+'inverted': (
+'text': map-get($app-colors, 'white'),
+'disabled-text': rgba(255, 255, 255, 0.2),
+'bg': rgba(255, 255, 255, 0.2),
+'border': rgba(255, 255, 255, 0.2),
+'disabled': rgba(255, 255, 255, 0.2),
+'hover': rgba(255, 255, 255, 0.6)
+),
+'interaction': (
+'text': map-get($app-colors, 'white'),
+'disabled-text': rgba(255, 255, 255, 0.2),
+'bg': map-get($app-colors, 'interaction-600'),
+'border': map-get($app-colors, 'interaction-600'),
+'disabled': rgba(255, 255, 255, 0.2),
+'hover': map-get($app-colors, 'interaction-600')
+)
+);
+.app-button {
+    display: inline-flex;
+    border-radius: 4px;
+    transition: color 0.12s, background-color 0.12s , border-color 0.12s;
+    padding: 0;
+}
+.app-button:not([disabled]) {
+    cursor: pointer;
+}
+.app-button:focus {
+    border-color: map-get($app-colors, 'interaction-200');
+    outline: none;
+    z-index: 2;
+    box-shadow: 0 0 0 3px $focus-color;
+}
+
+@each $name, $value in $app-button-variants {
+    .app-button-#{$name} {
+        background: map-get($value, 'bg');
+        color: map-get($value, 'text');
+        border: map-get($value, 'border');
+    }
+    .app-button-#{$name}:disabled {
+        background: map-get($value, 'disabled');
+        color: map-get($value, 'disabled-text');
+    }
+    .app-button-#{$name}:hover:not([disabled]) {
+        background: map-get($value, 'hover');
+    }
+}

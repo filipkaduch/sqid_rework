@@ -8,11 +8,11 @@
 			<div class="modal-mask" @click="$emit('cancel')" />
 			<div ref="modalTarget" class="modal-container" :style="{left: `calc(50% - ${width / 2}px)`, top: `calc(50% - ${height / 2}px)`}">
 				<app-box
-					class="ds-bg-white"
-					:class="`ds-modal-${size}`"
+					class="app-bg-white"
+					:class="`app-modal-${size}`"
 					border-radius="basic">
 					<app-box
-						class="ds-bg-separate-content-100 top-radius"
+						class="app-bg-separate-content-100 top-radius"
 						padding-x="L" padding-y="M" flex-type="row"
 						align="space-between">
 						<app-box padding-y="XS">
@@ -23,7 +23,7 @@
 							</app-text>
 						</app-box>
 						<app-box class="cursor-pointer" padding-y="XS" @click="$emit('cancel')">
-							<app-icon name="ds-icon-close" alt="close" color="display-content" />
+							<app-icon name="app-icon-close" alt="close" color="display-content" />
 						</app-box>
 					</app-box>
 					<app-box padding="L">
@@ -35,7 +35,7 @@
 						<slot name="modal-footer">
 							<app-inline class="m-0">
 								<app-box v-if="confirmText" padding-right="M">
-									<app-btn variant="primary" data-testid="modal-yes" :disabled="!confirmEnabled" @click="$emit('ok')">
+									<app-btn variant="secondary" data-testid="modal-yes" :disabled="!confirmEnabled" @click="$emit('ok')">
 										{{ $t(confirmText) }}
 									</app-btn>
 								</app-box>
@@ -129,14 +129,14 @@ export default defineComponent({
 	z-index: 9999;
 	filter: drop-shadow(0px 3px 4px rgba(0, 0, 0, 0.1));
 }
-.ds-modal-sm {
-	min-width: 300px !important;
+.app-modal-sm {
+	width: 300px !important;
 }
-.ds-modal-md {
-	min-width: 600px !important;
+.app-modal-md {
+	width: 600px !important;
 }
-.ds-modal-lg {
-	min-width: 800px !important;
+.app-modal-lg {
+	width: 800px !important;
 }
 
 .modal-enter-from {

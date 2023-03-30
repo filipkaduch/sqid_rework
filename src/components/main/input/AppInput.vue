@@ -5,16 +5,17 @@
 				{{ $t(title) }}
 			</app-text>
 		</app-box>
-		<app-box v-if="$slots.icon" class="ds-input-icon">
+		<app-box v-if="$slots.icon" class="app-input-icon">
 			<slot name="icon" />
 		</app-box>
-		<app-box v-if="$slots.rightIcon" class="ds-input-right-icon">
+		<app-box v-if="$slots.rightIcon" class="app-input-right-icon">
 			<slot name="rightIcon" />
 		</app-box>
 		<input
 			v-model="inputValue"
+      :disabled="disabled"
 			class="form-control text-color"
-			:class="{'input-icon-padding': $slots.icon, 'input-right-icon-padding': $slots.rightIcon, 'border-0 border-radius-0': !hasBorder}"
+			:class="{'input-icon-padding': $slots.icon, 'border-0 border-radius-0': !hasBorder}"
 			:style="inputStyle"
 			:placeholder="placeholder"
 			:type="type"
@@ -66,7 +67,7 @@ const INPUT_TYPES = {
 };
 
 export default {
-	name: 'DataStoriesInput',
+	name: 'AppInput',
 	props: {
 		type: {
 			type: String,
@@ -138,7 +139,11 @@ export default {
 		hideNumberButtons: {
 			type: Boolean,
 			default: false
-		}
+		},
+    disabled: {
+      type: Boolean,
+      default: false
+    }
 	},
 	emits: ['update', 'update:value'],
 	data() {
@@ -219,9 +224,6 @@ input::placeholder {
 .input-icon-padding {
 	padding-left: 50px;
 }
-.input-right-icon-padding {
-	padding-right: 50px;
-}
 .app-input-icon {
 	position: absolute;
 	top: 50%;
@@ -231,8 +233,9 @@ input::placeholder {
 .app-input-right-icon {
 	position: absolute;
 	top: 50%;
-	right: 16px;
+	right: 0;
 	transform: translate(0, -50%);
+  cursor: pointer;
 }
 
 .btn-square {

@@ -1,28 +1,55 @@
 <template>
-  <app-box flex-type="row" class="w-auto app-bg-separate-content-0 custom-navbar" align="space-between" align-y="center">
-    <app-box>
-      <app-text variant="app-headline2" color="display-content-600" class="cursor-pointer">
-        Title
+  <app-box flex-type="row" class="w-auto app-bg-separate-content-0 custom-navbar mb-4 d-block d-lg-flex" align="space-between" align-y="center">
+    <app-box flex-type="row" align-y="center">
+      <app-box class="h-100">
+        <app-icon name="app-module" fill="display-content-600" />
+      </app-box>
+      <app-text variant="app-headline3" color="display-content-600" class="pl-2 cursor-pointer">
+        {{ $t('t_title') }}
       </app-text>
     </app-box>
     <app-inline align-y="center">
       <app-inline-item>
-        <app-search-input search="" />
+        <app-btn variant="ghost">
+          {{ $t('t_about') }}
+        </app-btn>
       </app-inline-item>
       <app-inline-item>
-        <app-text variant="paragraphMedium" color="display-content-600" class="cursor-pointer">
-          About
-        </app-text>
+        <app-dropdown class="w-100" placement="bottom-end">
+          <template #triggerContent>
+            <app-tooltip>
+              <template #icon>
+                <app-btn variant="ghost" icon-only>
+                  <template #icon>
+                    <app-icon name="app-language" fill="display-content-600" />
+                  </template>
+                </app-btn>
+              </template>
+              <template #tooltip>
+                {{ $t('t_changeLanguage') }}
+              </template>
+            </app-tooltip>
+          </template>
+          <template #dropdownContent>
+            <app-dropdown-menu :items="locales" @selected="setLocale($event.value)" />
+          </template>
+        </app-dropdown>
       </app-inline-item>
     </app-inline>
   </app-box>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {computed, defineComponent} from 'vue';
+import useQueries from "../../modules/queries/composables/useQueries";
+import {i18n} from "@/plugins/all";
+import AppDropdown from "@/components/main/dropdown/AppDropdown.vue";
+import AppDropdownMenu from "@/components/main/dropdown/AppDropdownMenu.vue";
+const {t} = i18n.global;
 
 export default defineComponent({
   name: 'AppNavbar',
+  components: {AppDropdownMenu, AppDropdown},
   props: {
     logged: {
       type: Boolean,
@@ -30,7 +57,16 @@ export default defineComponent({
     }
   },
   setup(props, {emit}) {
-    return {};
+    const {queries} = useQueries();
+    const locales = computed(() => [{label: 'English', value: 'en'},{label: 'Slovak', value: 'sk'}]);
+    const setLocale = (locale: string) => {
+      i18n.global.locale = locale;
+    };
+    return {
+      queries,
+      locales,
+      setLocale
+    };
   }
 
 });
@@ -38,9 +74,15 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .custom-navbar {
-  border-radius: 16px;
-  padding: 8px 32px;
+  border-radius: 8px;
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  padding: 16px 32px;
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 5%);
-  border: 1px solid map-get($app-colors, 'display-content-200');
+  border: 1px solid map-get($app-colors, 'separate-content-400');
+  border-top: 0 !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 </style>

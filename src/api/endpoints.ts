@@ -1,0 +1,14 @@
+export const commonsEndpoint = 'https://commons.wikimedia.org/w/api.php'
+export const wikidataEndpoint = 'https://www.wikidata.org/w/api.php'
+export const sparqlEndpoint = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
+export const localSparqlEndpoint = 'http://localhost:3000/sparql';
+export const feiOntologyEndpoint = 'http://www.semanticweb.org/stufei/ontologies/malware#';
+export const rdfSchema = 'http://www.w3.org/2000/01/rdf-schema#';
+export const rdfSchemaSyntax = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+export const owlEndpoint = 'http://www.w3.org/2002/07/owl#';
+export const xmlSchema = 'http://www.w3.org/2001/XMLSchema#';
+export const feiSecurity = 'http://FEI-STU/TP2019/Security/';
+export const feiSecurityClasses = 'http://FEI-STU/TP2019/Security';
+export const MAX_SIMULTANEOUS_API_REQUESTS = 25
+export const MAX_ENTITIES_PER_API_REQUEST = 50
+export const MAX_SIMULTANEOUS_SPARQL_REQUESTS = 5

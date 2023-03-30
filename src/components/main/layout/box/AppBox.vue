@@ -36,14 +36,12 @@ export default defineComponent({
 			'border-bottom': (props.borderBottom || props.border) && borderStyles[`border-${props.borderBottom || props.border}`],
 			'border-radius': props.borderRadius && borderStyles[`radius-${props.borderRadius}`]
 		}));
-
 		const computedPadding = computed(() => ({
 			'padding-inline-start': spacingStyles[props.paddingLeft || props.paddingX || props.padding],
 			'padding-inline-end': spacingStyles[props.paddingRight || props.paddingX || props.padding],
 			'padding-block-start': spacingStyles[props.paddingTop || props.paddingY || props.padding],
 			'padding-block-end': spacingStyles[props.paddingBottom || props.paddingY || props.padding]
 		}));
-
 		const computedStyle = computed(() => ({
 			'justify-self': mapAlignToCss(props.alignSelf),
 			'align-self': mapAlignYToCss(props.alignYSelf),

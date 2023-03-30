@@ -1,0 +1,71 @@
+@import '../app-colors';
+$font-family-body: Roboto, sans-serif;
+$font-family-data: "Roboto Mono", monospace;
+
+$font-size-display: 32px;
+$font-size-headline1: 24px;
+$font-size-headline2: 20px;
+$font-size-subheadline: 17px;
+$font-size-body: 14px;
+$font-size-paragraph: 14px;
+$font-size-caption: 12px;
+
+$line-height-display: 36px;
+$line-height-headline1: 32px;
+$line-height-headline2: 28px;
+$line-height-subheadline: 28px;
+$line-height-paragraph: 24px;
+$line-height-body: 20px;
+$line-height-caption: 16px;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+
+$font-size-app-s-headline1: 72px;
+$font-size-app-s-headline2: 60px;
+$font-size-app-s-headline3: 50px;
+$font-size-app-headline1: 42px;
+$font-size-app-headline2: 35px;
+$font-size-app-headline3: 29px;
+$font-size-app-paragraph-large: 17px;
+
+$line-height-app-s-headline1: 84px;
+$line-height-app-s-headline2: 72px;
+$line-height-app-headline3: 60px;
+$line-height-app-headline1: 48px;
+$line-height-app-headline2: 42px;
+$line-height-app-headline3: 36px;
+$line-height-app-paragraph-large: 28px;
+
+:export {
+	basic: map-get($app-colors, 'display-content-700');
+	medium: map-get($app-colors, 'display-content');
+	light: map-get($app-colors, 'display-content-500');
+	secondary: map-get($app-colors, 'secondary');
+	success: map-get($app-colors, 'success');
+	warning: map-get($app-colors, 'warning');
+	error: map-get($app-colors, 'error-500');
+	interaction: map-get($app-colors, 'interaction-500');
+	inverted: map-get($app-colors, 'white');
+	display: $font-weight-medium #{$font-size-display}/#{$line-height-display} $font-family-body;
+	headline1: $font-weight-medium #{$font-size-headline1}/#{$line-height-headline1} $font-family-body;
+	headline1light: $font-weight-regular #{$font-size-headline1}/#{$line-height-headline1} $font-family-body;
+	headline2: $font-weight-medium #{$font-size-headline2}/#{$line-height-headline2} $font-family-body;
+	subheadline: $font-weight-medium #{$font-size-subheadline}/#{$line-height-subheadline} $font-family-body;
+	subheadlineRegular: $font-weight-regular #{$font-size-subheadline}/#{$line-height-subheadline} $font-family-body;
+	subheadlineMedium: $font-weight-medium #{$font-size-subheadline}/#{$line-height-subheadline} $font-family-body;
+	body: $font-weight-regular #{$font-size-body}/#{$line-height-body} $font-family-body;
+	bodyMedium: $font-weight-medium #{$font-size-body}/#{$line-height-body} $font-family-body;
+	paragraph: $font-weight-regular #{$font-size-paragraph}/#{$line-height-paragraph} $font-family-body;
+	data: $font-weight-regular #{$font-size-paragraph}/#{$line-height-body} $font-family-data;
+	dataCaption: $font-weight-regular #{$font-size-paragraph}/#{$line-height-body} $font-family-data;
+	caption: $font-weight-regular #{$font-size-caption}/#{$line-height-caption} $font-family-body;
+	captionMedium: $font-weight-medium #{$font-size-caption}/#{$line-height-caption} $font-family-body;
+	ds-headline1: $font-weight-medium #{$font-size-app-headline1}/#{$line-height-app-headline1} $font-family-body;
+	ds-headline2: $font-weight-medium #{$font-size-app-headline2}/#{$line-height-app-headline2} $font-family-body;
+	ds-headline3: $font-weight-medium #{$font-size-app-headline3}/#{$line-height-app-headline3} $font-family-body;
+	ds-headline4: $font-weight-medium #{$font-size-headline2}/#{$line-height-app-paragraph-large} $font-family-body;
+	ds-s-headline1: $font-weight-medium #{$font-size-app-s-headline1}/#{$line-height-app-s-headline1} $font-family-body;
+	ds-s-headline2: $font-weight-medium #{$font-size-app-s-headline2}/#{$line-height-app-s-headline2} $font-family-body;
+	ds-paragraphLarge: $font-weight-regular #{$font-size-app-paragraph-large}/#{$line-height-app-paragraph-large} $font-family-body;
+}

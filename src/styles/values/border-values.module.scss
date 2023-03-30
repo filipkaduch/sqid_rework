@@ -1,0 +1,57 @@
+@import '../app-colors';
+
+$radius-none: 0px;
+$radius-small: 2px;
+$radius-basic: 4px;
+$radius-big: 8px;
+$radius-rounded: 50%;
+$radius-pill-small: 24px;
+$radius-pill: 9999px;
+
+$border-width-basic: 1px;
+$border-width-active: 2px;
+$border-width-none: none;
+
+$border-color-separate-light: map-get($app-colors, 'separate-content-100');
+$border-color-separate: map-get($app-colors, 'separate-content-200');
+$border-color-separate-dark: map-get($app-colors, 'separate-content-400');
+$border-color-layout: map-get($app-colors, 'separate-content-200');
+$border-color-error: map-get($app-colors, 'error-500');
+$border-color-box: map-get($app-colors, 'separate-content-400');
+$border-color-box-hover: map-get($app-colors, 'separate-content');
+$border-color-disabled: map-get($app-colors, 'separate-content-100');
+
+$border-radius: (
+	'small': 2px,
+	'basic': 4px,
+	'big': 8px,
+	'rounded': 50%,
+	'pill-small': 24px,
+	'pill': 9999px
+);
+
+$border-width: (
+	'basic': 4px,
+	'active': 2px,
+	'none': none
+);
+
+
+
+:export {
+	radius-small: $radius-small;
+	radius-basic: $radius-basic;
+	radius-big: $radius-big;
+	radius-rounded: $radius-rounded;
+	radius-pill: $radius-pill;
+	radius-pill-small: $radius-pill-small;
+	border-box: $border-width-basic solid $border-color-box;
+	border-boxHover: $border-width-basic solid $border-color-box-hover;
+	border-disabled: $border-width-basic solid $border-color-disabled;
+	border-error: $border-width-basic solid $border-color-error;
+	border-layout: $border-width-basic solid $border-color-layout;
+	border-separate: $border-width-basic solid $border-color-separate;
+	border-separate-light: $border-width-basic solid $border-color-separate-light;
+	border-separate-dark: $border-width-basic solid $border-color-separate-dark;
+	border-transparent: $border-width-basic solid transparent;
+}

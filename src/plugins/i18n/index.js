@@ -4,6 +4,7 @@ import translations from './translations';
 const i18n = createI18n({
 	locale: 'en',
 	allowComposition: true,
+	globalInjection: true,
 	fallbackLocale: 'en',
 	messages: translations,
 	silentTranslationWarn: true

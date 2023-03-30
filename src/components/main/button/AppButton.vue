@@ -117,7 +117,11 @@ export default defineComponent({
 		noWrap: {
 			type: Boolean,
 			default: false
-		}
+		},
+    zIndex: {
+      type: Boolean,
+      default: false
+    }
 	},
 	emits: ['click'],
 	setup(props) {
@@ -134,6 +138,7 @@ export default defineComponent({
 			...(props.rounded ? {'border-radius': borderStyles['radius-rounded']} : {}),
 			...(props.pill ? {'border-radius': borderStyles['radius-pill-small']} : {}),
 			height: props.small ? '22px' : '36px',
+      ...(props.zIndex ? {zIndex: 100} : {}),
 			...(props.iconOnly ? {width: props.small ? '22px' : props.width ? props.width : '36px'} : {})
 		}));
 		return {
@@ -170,9 +175,9 @@ export default defineComponent({
 		}
 	}
 }
-.ds-button-secondary:disabled {
-	background-color: map-get($app-colors, 'white');
-	border-color: map-get($app-colors, 'separate-content-100');
+.app-button-secondary:disabled {
+	background-color: map-get($app-colors, 'separate-content-100');
+	border-color: map-get($app-colors, 'separate-content-400');
 	color: map-get($app-colors, 'display-content-400');
 }
 .inherit-font-color {

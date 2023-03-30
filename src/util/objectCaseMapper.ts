@@ -6,7 +6,7 @@ export const objectCaseStyles = Object.freeze({
 	SENTENCE_CASE: 'sentence-case'
 });
 
-export const objectCaseMapper = (value, caseStyle) => {
+export const objectCaseMapper = (value: string, caseStyle: string): any => {
 	if (isArray(value)) {
 		return value.map((innerObj) => objectCaseMapper(innerObj, caseStyle));
 	}

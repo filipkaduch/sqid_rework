@@ -32,7 +32,7 @@ export default defineComponent({
 			as: 'url',
 			eager: true
 		});
-		const svg = computed(() => modules?.[`/src/assets/${props.name}.svg`]);
+		const svg = computed(() => modules?.[`/src/assets/icons/${props.name}.svg`]);
 		return {
 			svg
 		};

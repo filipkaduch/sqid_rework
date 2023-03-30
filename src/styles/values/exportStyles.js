@@ -1,7 +1,7 @@
-import scssFontStyles from './font-values.scss';
-import scssBorderStyles from './border-values.scss';
-import scssBoxShadowStyles from './box-shadow-values.scss';
-import scssSpacingStyles from './spacing-values.scss';
+import scssFontStyles from './font-values.module.scss';
+import scssBorderStyles from './border-values.module.scss';
+import scssBoxShadowStyles from './box-shadow-values.module.scss';
+import scssSpacingStyles from './spacing-values.module.scss';
 
 export const fontStyles = scssFontStyles;
 export const borderStyles = scssBorderStyles;

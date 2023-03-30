@@ -1,14 +1,102 @@
 @import "functions";
 @import "app-colors";
+@import "app-buttons";
+@import "pulsating-circle";
+@import 'node_modules/bootstrap/scss/bootstrap';
 
-.w-100 {
-  width: 100%;
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,700,700i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,600,700&display=swap');
+
+body {
+  font-family: 'Roboto', Helvetica, sans-serif;
 }
 
-.w-auto {
-  width: auto;
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: 0 !important;
+  font-weight: normal;
+}
+
+.comma-separated {
+  display: inline;
+  list-style: none;
+  padding: 0;
+
+  li {
+    display: inline;
+  }
+
+  li::after {
+    content: ", ";
+  }
+
+  li:last-child::after {
+    content: "";
+  }
+
+  .badge {
+    margin-left: .25em;
+    margin-right: .05em;
+  }
+}
+
+.line-separated {
+  li::after {
+    content: " | ";
+  }
+
+  li:last-child::after {
+    content: "";
+  }
 }
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.v-popper--theme-dropdown .v-popper__arrow-container {
+  display: none !important;
+}
+
+.form-control {
+  border-color: map-get($app-colors, 'separate-content-400') !important;
+}
+
+.group-input-right > input {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-right: 0;
+  padding-right: 0 !important;
+}
+
+.group-input-left > input {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.group-btn-right {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.group-btn-left {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.clean-input > input {
+  background-color: map-get($app-colors, 'separate-content-0') !important;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+.clean-input {
+  background-color: map-get($app-colors, 'separate-content-0') !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
 }

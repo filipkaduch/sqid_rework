@@ -1,5 +1,5 @@
 <template>
-  <app-box padding-y="XS">
+  <app-box>
     <ul class="m-0">
       <li
           v-for="(item, index) in items"
@@ -9,6 +9,7 @@
           :class="{disabled: item.disabled}"
           @click="emitSelected(item)">
         <app-box
+            class="cursor-pointer"
             :class="item.properties?.subText ? 'h-auto' : ''"
             padding-y="S"
             padding-x="GROUP"
@@ -20,7 +21,7 @@
             </app-box>
             <app-box align-y="center">
               <app-text :variant="item.properties?.subText ? 'bodyMedium' : 'body'" class="d-inline-flex">
-                {{ item.label }}
+                {{ $t(item.label) }}
               </app-text>
             </app-box>
           </app-inline>
@@ -39,7 +40,7 @@
 // eslint-disable-next-line no-unused-vars
 import {defineComponent, PropType} from 'vue';
 // eslint-disable-next-line no-unused-vars
-import {SelectItem} from '@/components/main/Dropdown/types';
+import {SelectItem} from "../../types/types";
 
 export default defineComponent({
   name: 'AppDropdownMenu',

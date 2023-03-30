@@ -1,28 +1,13 @@
 <template>
-	<v-dropdown :placement="placement" :container="container" @apply-hide="$emit('hidden')">
-		<slot name="triggerContent" />
-		<!-- eslint-disable-next-line vue/no-unused-vars --->
-		<template #popper="{hide}">
-			<app-box>
-				<slot name="dropdownContent" :hide="hide">
-					<app-card body-class="px-0 py-2">
-						<div class="ds-dropdown-body">
-							<app-btn
-								v-for="(item, index) in items"
-								:key="`${index}-dropdown-key`"
-								v-close-popper
-								:variant="variant"
-								class="ds-dropdown-item"
-								block
-								@click="$emit('click', item.value)">
-								{{ item.label }}
-							</app-btn>
-						</div>
-					</app-card>
-				</slot>
-			</app-box>
-		</template>
-	</v-dropdown>
+  <v-dropdown :placement="placement" :container="container" @apply-hide="$emit('hidden')">
+    <slot name="triggerContent" />
+    <!-- eslint-disable-next-line vue/no-unused-vars --->
+    <template #popper="{hide}">
+      <app-box>
+        <slot name="dropdownContent" :hide="hide"/>
+      </app-box>
+    </template>
+  </v-dropdown>
 </template>
 
 <script lang="ts">
@@ -53,10 +38,6 @@ export default defineComponent({
 				Boolean
 			],
 			default: 'body'
-		},
-		items: {
-			type: Array as PropType<SelectItem[]>,
-			default: () => []
 		}
 	},
 	emits: ['hidden', 'click']

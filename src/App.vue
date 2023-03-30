@@ -1,10 +1,14 @@
 <template>
   <div class="app">
     <app-navbar />
+    <homepage />
+    <app-notification />
   </div>
 </template>
 <script setup lang="ts">
-import AppNavbar from "@/components/design/AppNavbar.vue";
+import AppNavbar from "./components/design/AppNavbar.vue";
+import AppNotification from "./components/main/notification/AppNotification.vue";
+import Homepage from "./modules/homepage/Homepage.vue";
 </script>
 
 <style scoped>
