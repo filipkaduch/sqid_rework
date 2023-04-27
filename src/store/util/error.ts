@@ -1,16 +1,16 @@
 import {defineStore} from 'pinia';
 export interface ErrorState {
-    error: any
+    error: string | null
 }
 export const useErrorStore = defineStore('error', {
     state: (): ErrorState => ({
         error: null
     }),
     getters: {
-        error: (state: any): ErrorState | null => state.error ?? null
+        getError: (state: ErrorState): string | null => state.error ?? null
     },
     actions: {
-        setError(error: ErrorState) {
+        setError(error: string) {
             this.error = error;
         },
         removeError() {

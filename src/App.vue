@@ -1,14 +1,20 @@
 <template>
   <div class="app">
     <app-navbar />
-    <homepage />
+    <router-view />
     <app-notification />
   </div>
 </template>
 <script setup lang="ts">
 import AppNavbar from "./components/design/AppNavbar.vue";
 import AppNotification from "./components/main/notification/AppNotification.vue";
-import Homepage from "./modules/homepage/Homepage.vue";
+import {watchEffect} from "vue";
+import {useMobileStore} from "@/store/util/mobile";
+
+watchEffect(() => {
+    useMobileStore().setState(window.innerWidth < 1120, window.innerWidth);
+});
+
 </script>
 
 <style scoped>

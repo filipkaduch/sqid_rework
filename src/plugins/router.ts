@@ -1,7 +1,14 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import {homepageRouter} from '@/modules/homepage/router';
+import {useErrorStore} from "@/store/util/error";
 
-let devRoutes = [];
+interface RouterRoute {
+    beforeEnter: any,
+    path: string,
+    name: string
+}
+
+let devRoutes = [] as RouterRoute[];
 const clientRoutes = [
     ...homepageRouter,
     {
@@ -11,6 +18,7 @@ const clientRoutes = [
     },
     {
         path: '/:pathMatch(.*)*',
+        // @ts-ignore
         beforeEnter: (to, from, next) => {
             next({name: 'error'});
         }
@@ -33,15 +41,16 @@ if (import.meta.env.NODE_ENV !== 'production') {
 
 const router = createRouter({
     history: createWebHistory('/'),
+    // @ts-ignore
     routes: [
         ...devRoutes,
         ...clientRoutes
     ]
 });
 
-
+// @ts-ignore
 router.beforeEach((to, from, next) => {
-    if (store.getters['error/error']) {
+    if (useErrorStore().getError) {
         if (to.matched.some((record) => record.name === 'error')) {
             return next();
         }

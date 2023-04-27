@@ -307,7 +307,6 @@ export async function searchEntities(search: string,
   }
 
   const response = await apiRequest(wikidataEndpoint, params) as WBApiResult
-  console.log('SHOW RESPONSE: ', response);
   return response.search!
 }
 
@@ -329,7 +328,6 @@ export async function siteLinkUrls(entityId: EntityId) {
 
 export function relatedEntityIds(claims: ClaimsMap) {
   const entityIds = new Set()
-  console.log(claims);
   for (const [propertyId, theClaims] of claims) {
     entityIds.add(propertyId)
 

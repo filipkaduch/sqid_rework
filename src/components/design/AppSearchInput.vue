@@ -8,7 +8,7 @@
               class="group-input-right clean-input"
               :disabled="selectedDataSource === null || doneSearch"
               v-model:value="input"
-              width="600px"
+              :width="isMobile ? `${mobileWidth - 260}px` : '600px'"
               :lg="true"
               :debounce="debounce"
               :placeholder="'Search'">
@@ -18,7 +18,7 @@
               class="group-input-right clean-input"
               :lg="true"
               :disabled="true"
-              width="600px"
+              :width="isMobile ? `${mobileWidth - 260}px` : '600px'"
               :placeholder="placeHolder"/>
         </app-inline-item>
         <app-inline-item>
@@ -82,6 +82,7 @@ import {searchForEntitiesCVE} from "@/api/cve/sparql";
 import {SearchedCveObject} from "@/api/cve/types";
 import {extractCVEId} from "@/api/cve/cve";
 import {defaultCve, useCVEStore} from "@/modules/cves/store/cveStore";
+import {useMobileStore} from "@/store/util/mobile";
 
 const {t} = i18n.global;
 
@@ -184,7 +185,6 @@ export default defineComponent({
     };
 
     const searchEntitites = async(search: string) => {
-      console.log(state.selectedDataSource?.value);
       if (state.selectedDataSource?.value === DataSourceType.WIKIDATA) {
         try {
           const response = await searchEntities(search, { limit: 10 })
@@ -231,13 +231,9 @@ export default defineComponent({
         }
       } else if (state.selectedDataSource?.value === DataSourceType.CVE_DOMAIN) {
         try {
-          console.log(search);
-          // const response = await previewCveNamedIndividuals();
           const response = await searchForEntitiesCVE(search);
-          console.log(response);
           state.entities = []
           for (const [key, entity] of Object.entries(response)) {
-              console.log(entity);
             state.entities.push(entity);
           }
         } catch (err) {
@@ -253,9 +249,7 @@ export default defineComponent({
 
     const selectEntity = async(event: any) => {
       if (state.selectedDataSource.value === DataSourceType.WIKIDATA) {
-        console.log(event);
         useEntityStore().entities[event.value] = cloneDeep(defaultEntityState);
-        console.log(useEntityStore().entities[event.value]);
         useEntityStore().entities[event.value].id = event.value;
         if (useQueriesStore().queries.find((query) => query.id === props.queryId)) {
           // @ts-ignore
@@ -263,7 +257,6 @@ export default defineComponent({
         }
 
       } else if (state.selectedDataSource.value === DataSourceType.SECURITY_DOMAIN) {
-        console.log(event);
         useMalwaresStore().malwares[event.value] = cloneDeep(defaultMalware);
         if (useQueriesStore().queries.find((query) => query.id === props.queryId)) {
           // @ts-ignore
@@ -284,7 +277,6 @@ export default defineComponent({
       state.isOpen = false;
       state.doneSearch = true;
       state.placeHolder = event.label;
-      console.log(event.value);
       emit('selected', event.value);
     };
 
@@ -295,7 +287,6 @@ export default defineComponent({
       }
       state.timeout = setTimeout(async() => {
         state.loading = true
-        console.log(value);
         await searchEntitites(value);
         state.inputValue = value;
       }, 500);
@@ -306,6 +297,9 @@ export default defineComponent({
       state.loading = false;
 		});
 
+    const isMobile = computed(() => useMobileStore().isMobile);
+    const mobileWidth = computed(() => useMobileStore().getScreenSize);
+
     onMounted(() => {
        if (state.placeHolder !== '' || props.placeholder !== null) {
          state.doneSearch = true;
@@ -315,6 +309,8 @@ export default defineComponent({
 		return {
 			...toRefs(state),
       dataSources,
+      isMobile,
+      mobileWidth,
       mappedEntities,
       selectEntity,
       resetInputs,

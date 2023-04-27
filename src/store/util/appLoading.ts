@@ -7,10 +7,10 @@ export const useLoadingStore = defineStore('appLoading', {
         loading: false
     }),
     getters: {
-        isLoading: (state: any): AppLoadingState | null => state.loading ?? false
+        isLoading: (state: any): boolean => state.loading ?? false
     },
     actions: {
-        setState(loadingState: AppLoadingState) {
+        setState(loadingState: boolean) {
             this.loading = loadingState;
         }
     }

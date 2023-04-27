@@ -21,6 +21,13 @@ body {
   font-weight: normal;
 }
 
+@media (max-width: 1200px) {
+  #app {
+    padding: 5px !important;
+  }
+}
+
+
 .comma-separated {
   display: inline;
   list-style: none;

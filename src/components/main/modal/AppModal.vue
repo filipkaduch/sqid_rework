@@ -143,6 +143,14 @@ export default defineComponent({
   opacity: 0;
 }
 
+.modal-enter-from .modal-wrapper,
+.modal-leave-to .modal-wrapper {
+	.modal-container {
+		-webkit-transform: scale(1.1);
+		transform: scale(1.1);
+	}
+}
+
 .modal-leave-to {
   opacity: 0;
 }

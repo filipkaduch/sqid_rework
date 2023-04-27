@@ -1,16 +1,17 @@
 <template>
-  <app-box flex-type="row" class="w-auto app-bg-separate-content-0 custom-navbar mb-4 d-block d-lg-flex" align="space-between" align-y="center">
+  <app-box flex-type="row" :class="isMobile ? 'mb-1' : 'mb-4'" class="w-auto app-bg-separate-content-0 custom-navbar d-block d-lg-flex"
+     align="space-between" align-y="center">
     <app-box flex-type="row" align-y="center">
-      <app-box class="h-100">
+      <app-box class="h-100" v-if="!isMobile">
         <app-icon name="app-module" fill="display-content-600" />
       </app-box>
-      <app-text variant="app-headline3" color="display-content-600" class="pl-2 cursor-pointer">
+      <app-text :variant="!isMobile ? 'app-headline3' : 'app-paragraphLarge'" color="display-content-600" class="pl-2 cursor-pointer" @click="$router.push({name: 'homepage'})">
         {{ $t('t_title') }}
       </app-text>
     </app-box>
     <app-inline align-y="center">
       <app-inline-item>
-        <app-btn variant="ghost">
+        <app-btn variant="ghost" @click="$router.push({name: 'version'})">
           {{ $t('t_about') }}
         </app-btn>
       </app-inline-item>
@@ -45,6 +46,7 @@ import useQueries from "../../modules/queries/composables/useQueries";
 import {i18n} from "@/plugins/all";
 import AppDropdown from "@/components/main/dropdown/AppDropdown.vue";
 import AppDropdownMenu from "@/components/main/dropdown/AppDropdownMenu.vue";
+import {useMobileStore} from "@/store/util/mobile";
 const {t} = i18n.global;
 
 export default defineComponent({
@@ -56,13 +58,15 @@ export default defineComponent({
       default: false
     }
   },
-  setup(props, {emit}) {
+  setup() {
     const {queries} = useQueries();
     const locales = computed(() => [{label: 'English', value: 'en'},{label: 'Slovak', value: 'sk'}]);
     const setLocale = (locale: string) => {
       i18n.global.locale = locale;
     };
+    const isMobile = computed(() => useMobileStore().isMobile);
     return {
+      isMobile,
       queries,
       locales,
       setLocale

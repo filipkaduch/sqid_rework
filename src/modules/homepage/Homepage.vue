@@ -1,6 +1,6 @@
 <template>
   <app-box flex-type="row">
-    <app-box class="left-navigator my-2 mr-2 custom-navbar app-bg-separate-content-0" border="">
+    <app-box v-if="!isMobile" class="left-navigator my-2 mr-2 custom-navbar app-bg-separate-content-0">
       <app-box padding-bottom="M" class="app-bg-separate-content-0">
         <app-text variant="app-headline3">{{ `${$t('t_Queries')} (${queries.length}):` }}</app-text>
       </app-box>
@@ -62,17 +62,18 @@
 
 <script lang="ts">
 import Query from "../queries/Query.vue";
-import {defineComponent, nextTick, onMounted, reactive, ref, toRefs} from 'vue';
+import {computed, defineComponent, nextTick, onMounted, reactive, ref, toRefs} from 'vue';
 import {useQueriesStore} from "../queries/store/queriesStore";
 import useQueries from "../queries/composables/useQueries";
 import {getName} from "@/api/malwares/sparql";
 import {loadLabel} from "@/api/malwares/malwares";
 import {debounce} from "lodash";
+import {useMobileStore} from "@/store/util/mobile";
 
 
 export default defineComponent({
   name: 'Homepage',
-  methods: {loadLabel, getName},
+  methods: {useMobileStore, loadLabel, getName},
   components: {Query},
   props: {
     logged: {
@@ -166,8 +167,11 @@ export default defineComponent({
       }
     });
 
+    const isMobile = computed(() => useMobileStore().isMobile);
+
     return {
       queries,
+      isMobile,
       scrollContainer,
       scrollToBottom,
       addNewQuery,

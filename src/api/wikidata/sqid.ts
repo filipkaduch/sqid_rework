@@ -51,7 +51,6 @@ export function shouldRefresh(timeSinceLastRefresh: number,
 
 export async function getStatistics(lastRefresh: number): Promise<SqidStatistics> {
   const response = await axiosGet(getDataFileURI('statistics', lastRefresh));
-  console.log(response);
   const dumpDate = response.dumpDate;
   const dumpYear = dumpDate.slice(0, 4);
   const dumpMonth = dumpDate.slice(4, 6);
@@ -171,7 +170,6 @@ Map<PropertyClassification, ClaimsMap> {
   for (const propertyId of sortedProperties) {
     sortedClaims.set(propertyId, claims.get(propertyId)!)
   }
-  console.log(propertyGroups);
   for (const [prop, claim] of sortedClaims.entries()) {
     const kind = propertyGroups(prop, queryEntityId)
     let group = groupedClaims.get(kind)

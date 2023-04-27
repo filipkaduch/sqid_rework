@@ -35,7 +35,7 @@
     <app-collapse :is-open="collapse || currentQuery.opened">
       <app-box
           class="custom-navbar app-bg-separate-content-0 height-animation w-100 resize-query"
-          :class="{'fullscreen-modal': fullscreen}"
+          :class="{'fullscreen-modal': fullscreen && !isMobile, 'fullscreen-mobile': fullscreen && isMobile}"
           :align="isLoading ? 'center' : 'left'" flex-type="row">
         <entity v-if="currentQuery.dataSource?.value === DataSourceType.WIKIDATA" :entity-id="currentQuery.entityId" />
         <malware
@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, reactive, toRef, toRefs} from 'vue';
+import {computed, defineComponent, PropType, reactive, toRef, toRefs} from 'vue';
 import {DataSourceType, Query, useQueriesStore} from "./store/queriesStore";
 import useQueries from "./composables/useQueries";
 import Entity from "../entities/Entity.vue";
@@ -79,6 +79,7 @@ import useEntities from "@/modules/entities/composables/useEntities";
 import Malware from "@/modules/malwares/Malware.vue";
 import {mappedDataSources} from "@/util/consts/dataSources";
 import Cve from "@/modules/cves/Cve.vue";
+import {useMobileStore} from "@/store/util/mobile";
 
 
 export default defineComponent({
@@ -113,7 +114,6 @@ export default defineComponent({
       emit('scrollTo');
     };
     const triggerQuery = () => {
-        console.log('HERE TRIGGER');
       state.collapse = !state.collapse;
       // @ts-ignore
       queriesStore.queries.find((query) => query.id === props.currentQuery.id).opened = state.collapse;
@@ -124,8 +124,11 @@ export default defineComponent({
       emit('scrollTo');
     };
 
+    const isMobile = computed(() => useMobileStore().isMobile);
+
     return {
       ...toRefs(state),
+        isMobile,
       queries,
       entity,
       deleteQuery,
@@ -185,6 +188,14 @@ export default defineComponent({
   left: calc(50% - 600px);
   z-index: 9000;
   height: calc(100% - 120px);
+}
+
+.fullscreen-mobile {
+  position: absolute;
+  width: 100%;
+  z-index: 9000;
+  top: 0;
+  height: 100%;
 }
 
 .smoke {
