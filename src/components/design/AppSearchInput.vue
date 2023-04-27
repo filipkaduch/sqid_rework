@@ -30,8 +30,8 @@
           </app-btn>
         </app-inline-item>
       </app-inline>
-      <app-box v-if="(mappedEntities.length > 0 || mappedMalwares.length > 0) && isOpen" border="separate-dark" border-radius="basic" class="search-results app-bg-white">
-          <app-dropdown-menu :items="selectedDataSource.value === DATA_SOURCES.WIKIDATA ? mappedEntities : mappedMalwares" @selected="selectEntity" />
+      <app-box v-if="(mappedEntities.length > 0 || mappedMalwares.length > 0 || mappedCves.length > 0) && isOpen" border="separate-dark" border-radius="basic" class="search-results app-bg-white">
+          <app-dropdown-menu :items="getSearchedEntities" @selected="selectEntity" />
       </app-box>
     </app-inline-item>
     <app-inline-item class="pl-1">
@@ -63,7 +63,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, reactive, toRefs, watch} from 'vue';
+import {computed, defineComponent, onMounted, reactive, toRefs, watch} from 'vue';
 import {DATA_SOURCES, dataSources} from "@/util/consts/dataSources";
 import {searchEntities} from "@/api/wikidata/wikidata";
 import AppDropdown from "../main/dropdown/AppDropdown.vue";
@@ -78,7 +78,10 @@ import {DataSourceType, useQueriesStore} from "@/modules/queries/store/queriesSt
 import {getName, searchForEntities} from "@/api/malwares/sparql";
 import {extractId} from "@/api/malwares/malwares";
 import {defaultMalware, useMalwaresStore} from "@/modules/malwares/store/malwaresStore";
-import {previewCveClasses, previewCveNamedIndividuals, searchForEntitiesCVE} from "@/api/cve/sparql";
+import {searchForEntitiesCVE} from "@/api/cve/sparql";
+import {SearchedCveObject} from "@/api/cve/types";
+import {extractCVEId} from "@/api/cve/cve";
+import {defaultCve, useCVEStore} from "@/modules/cves/store/cveStore";
 
 const {t} = i18n.global;
 
@@ -139,6 +142,24 @@ export default defineComponent({
       properties: {subText: extractId(toMap.entity)},
       value: extractId(toMap.entity)
     })) : [] ?? []);
+
+    const mappedCves = computed(() => state.selectedDataSource?.value === DataSourceType.CVE_DOMAIN ? state.entities?.map((toMap: SearchedCveObject) => ({
+      entity: toMap,
+      value: extractCVEId(extractId(toMap.entity, '/')),
+      properties: {subText: objectCaseMapper(extractId(toMap.value), objectCaseStyles.SENTENCE_CASE)},
+      label: extractId(toMap.entity, '/')
+    })) : [] ?? []);
+
+    const getSearchedEntities = computed(() => {
+       if (state.selectedDataSource?.value === DataSourceType.CVE_DOMAIN) {
+           return mappedCves.value;
+       } else if (state.selectedDataSource?.value === DataSourceType.SECURITY_DOMAIN) {
+           return mappedMalwares.value;
+       } else if (state.selectedDataSource?.value === DataSourceType.WIKIDATA) {
+           return mappedEntities.value;
+       }
+       return [];
+    });
 
 		watch(() => props.search, (value) => {
 			state.input = value;
@@ -211,10 +232,12 @@ export default defineComponent({
       } else if (state.selectedDataSource?.value === DataSourceType.CVE_DOMAIN) {
         try {
           console.log(search);
-          const response = await previewCveNamedIndividuals();
+          // const response = await previewCveNamedIndividuals();
+          const response = await searchForEntitiesCVE(search);
           console.log(response);
           state.entities = []
           for (const [key, entity] of Object.entries(response)) {
+              console.log(entity);
             state.entities.push(entity);
           }
         } catch (err) {
@@ -249,6 +272,14 @@ export default defineComponent({
           // @ts-ignore
           useQueriesStore().queries.find((query) => query.id === props.queryId).name = toSliceName.slice(1, -1);
         }
+      } else if (state.selectedDataSource?.value === DataSourceType.CVE_DOMAIN) {
+        useCVEStore().cves[event.value] = cloneDeep(defaultCve);
+        if (useQueriesStore().queries.find((query) => query.id === props.queryId)) {
+            // @ts-ignore
+            useQueriesStore().queries.find((query) => query.id === props.queryId).entityId = event.value;
+            // @ts-ignore
+            useQueriesStore().queries.find((query) => query.id === props.queryId).name = event.value;
+        }
       }
       state.isOpen = false;
       state.doneSearch = true;
@@ -275,6 +306,12 @@ export default defineComponent({
       state.loading = false;
 		});
 
+    onMounted(() => {
+       if (state.placeHolder !== '' || props.placeholder !== null) {
+         state.doneSearch = true;
+       }
+    });
+
 		return {
 			...toRefs(state),
       dataSources,
@@ -282,7 +319,9 @@ export default defineComponent({
       selectEntity,
       resetInputs,
       setDataSource,
-      mappedMalwares
+      mappedMalwares,
+      mappedCves,
+      getSearchedEntities
 		};
 	}
 });

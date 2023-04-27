@@ -45,7 +45,7 @@ export const useQueriesStore = defineStore('queriesStore', {
             return newQuery.id;
         },
         selectQuery(queryId: string) {
-          this.selectedQuery = this.queries.find((query: Query) => query.id === queryId);
+            this.selectedQuery = this.queries.find((query: Query) => query.id === queryId);
         },
         setQueryDataSource(queryId: string, dataSource: DataSourceType) {
             const query = this.queries.find((query: Query) => query.id === queryId);

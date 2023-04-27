@@ -68,7 +68,6 @@ import useQueries from "../queries/composables/useQueries";
 import {getName} from "@/api/malwares/sparql";
 import {loadLabel} from "@/api/malwares/malwares";
 import {debounce} from "lodash";
-import {previewCveDatabases} from "@/api/cve/sparql";
 
 
 export default defineComponent({
@@ -89,19 +88,19 @@ export default defineComponent({
       currentIndex: 0,
       inMove: false
     });
-    const addNewQuery = () => {
+    const addNewQuery = async() => {
       const selectedQueryId = queriesStore.addQuery();
-      // state.currentIndex += 1;
-      scrollToBottom();
-      // scrollToSec();
       queriesStore.selectQuery(selectedQueryId);
+      await nextTick(() => {
+          scrollToSec(queries.value.length - 1);
+      });
     };
 
     const scrollToSec = (toIndex: number) => {
       const query = document.getElementById(`query${toIndex}`);
       if (query) {
-        query.scrollIntoView({ behavior: 'smooth' });
-        state.currentIndex = toIndex;
+          query.scrollIntoView({ behavior: 'smooth' });
+          state.currentIndex = toIndex;
       }
     };
 
@@ -162,9 +161,8 @@ export default defineComponent({
     };
 
     onMounted(async() => {
-      await previewCveDatabases();
       if (queries.value.length === 0) {
-        addNewQuery();
+        await addNewQuery();
       }
     });
 

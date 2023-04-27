@@ -1,0 +1,4 @@
+**/*.svg
+**/*.sh
+/node_modules
+

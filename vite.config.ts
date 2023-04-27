@@ -46,7 +46,7 @@ export default defineConfig({
   },
   build: {
     target: 'modules',
-    chunkSizeWarningLimit: 600,
+    chunkSizeWarningLimit: 10600,
     cssCodeSplit: true
   }
 })

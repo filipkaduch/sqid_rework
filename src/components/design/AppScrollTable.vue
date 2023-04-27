@@ -5,6 +5,9 @@
         <app-text :class="item.id ? 'entity-link' : ''" variant="app-paragraphLarge" @click="queryFromSearch(item.id, item.source)">
           {{ `${item.name}${item?.id ? `: ${item.id}` : ''}` }}
         </app-text>
+        <app-text v-if="item.description" variant="dataCaption">
+          {{ item.description }}
+        </app-text>
       </app-box>
     </app-box>
     <app-box :border-top="items.length > NUMBER_OF_ITEMS ? 'box' : ''">

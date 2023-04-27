@@ -1,0 +1,8 @@
+{
+  "sources": [
+    {
+      "type": "file",
+      "value": "file:///database/malware.owl"
+    }
+  ]
+}

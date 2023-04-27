@@ -8,5 +8,4 @@ app.use(ComponentsInstaller);
 app.use(plugins.floatingVue);
 app.use(plugins.i18n);
 app.use(plugins.pinia);
-app.use(plugins.splide);
 app.mount('#app');

@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15">
-  <defs>
-    <style>
-      .a,.b{fill:#1357e9;}.a{opacity:1;}
-    </style>
-  </defs>
-  <path class="a" d="M16-15,9-6.25v4.341L7,0V-6.25L0-15Zm-4.161,2H4.161L8-8.2Z" transform="translate(0 15)"/>
-</svg>

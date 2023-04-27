@@ -17,15 +17,15 @@ export default defineComponent({
   components: {},
   props: {
     entityId: {
-      type: String,
+      type: String | null,
       default: null
     },
     malwareId: {
-      type: String,
+      type: String | null,
       default: null
     },
     queryEntityId: {
-      type: String,
+      type: String | null,
       default: null
     }
   },

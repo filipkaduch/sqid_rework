@@ -100,3 +100,11 @@ body {
   border-left: 0 !important;
   border-right: 0 !important;
 }
+.fixed-header {
+  position: sticky;
+  top: 0;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: map-get($app-colors, 'separate-content-0');
+  width: 100%;
+}

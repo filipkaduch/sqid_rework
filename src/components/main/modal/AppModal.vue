@@ -90,7 +90,7 @@ export default defineComponent({
 		}
 	},
 	emits: ['cancel', 'ok', 'hidden', 'hide', 'show', 'shown'],
-	setup(props) {
+	setup() {
 		const modalTarget = ref(null);
 		// @ts-ignore
 		const {width, height} = useElementSize(modalTarget);
@@ -148,13 +148,6 @@ export default defineComponent({
 }
 .modal-wrapper {
 	transition: all 0.3s ease;
-}
-.modal-enter-from .modal-wrapper,
-.modal-leave-to .modal-wrapper {
-	.modal-container {
-		-webkit-transform: scale(1.1);
-		transform: scale(1.1);
-	}
 }
 
 .top-radius {

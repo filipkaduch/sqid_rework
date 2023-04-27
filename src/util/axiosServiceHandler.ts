@@ -1,7 +1,7 @@
 import type {AxiosError, AxiosResponse} from 'axios';
 // eslint-disable-next-line no-duplicate-imports
 import axios from 'axios';
-const devMode = import.meta.env.DEV;
+const devMode = true;
 
 const handleError = (error: unknown): never => {
     if (error instanceof Error) {

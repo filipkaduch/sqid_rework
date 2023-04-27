@@ -45,6 +45,12 @@
             :query-id="currentQuery.id"
             @fullscreen="fullscreen = !fullscreen"
             @new-query="closingEffect"/>
+        <cve v-else-if="currentQuery.dataSource?.value === DataSourceType.CVE_DOMAIN"
+           :class="{'content': fullscreen}"
+           :cve-id="currentQuery.entityId"
+           :query-id="currentQuery.id"
+           @fullscreen="fullscreen = !fullscreen"
+           @new-query="closingEffect" />
       </app-box>
     </app-collapse>
     <app-modal
@@ -72,6 +78,7 @@ import {useEntityStore} from "../entities/store/entityStore";
 import useEntities from "@/modules/entities/composables/useEntities";
 import Malware from "@/modules/malwares/Malware.vue";
 import {mappedDataSources} from "@/util/consts/dataSources";
+import Cve from "@/modules/cves/Cve.vue";
 
 
 export default defineComponent({
@@ -81,7 +88,7 @@ export default defineComponent({
       return mappedDataSources
     }
   },
-  components: {Malware, Entity, AppLoader},
+  components: {Cve, Malware, Entity, AppLoader},
   props: {
     currentQuery: {
       type: Object as PropType<Query>,
@@ -106,6 +113,7 @@ export default defineComponent({
       emit('scrollTo');
     };
     const triggerQuery = () => {
+        console.log('HERE TRIGGER');
       state.collapse = !state.collapse;
       // @ts-ignore
       queriesStore.queries.find((query) => query.id === props.currentQuery.id).opened = state.collapse;

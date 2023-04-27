@@ -1,4 +1,4 @@
-import {axiosGet} from "@/util/axiosServiceHandler";
+  import {axiosGet} from "@/util/axiosServiceHandler";
 import { Claim, EntityId, ResultList, SqidStatistics,
          SqidHierarchyRecord, SqidPropertyUsageRecord,
          SqidRuleSchema } from './types'

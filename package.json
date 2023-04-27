@@ -5,14 +5,18 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "lint": "eslint src",
+    "lint-fix": "eslint src --fix",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@comunica/query-sparql": "^2.6.9",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/vue-fontawesome": "^3.0.2",
     "@kyvg/vue3-notification": "^2.9.0",
-    "@splidejs/vue-splide": "^0.6.12",
+    "@storybook/vue3": "^7.0.7",
     "@types/node": "^18.14.6",
     "axios": "^1.3.1",
     "axios-retry": "^3.4.0",
@@ -28,16 +32,35 @@
     "vue-inline-svg": "^3.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.32.3",
+    "@storybook/addon-essentials": "^7.0.7",
+    "@storybook/addon-interactions": "^7.0.7",
+    "@storybook/addon-links": "^7.0.7",
+    "@storybook/blocks": "^7.0.7",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@storybook/vue3-vite": "^7.0.7",
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.12",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
     "@vueuse/core": "^9.13.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sass": "^1.58.3",
+    "storybook": "^7.0.7",
     "vite": "^4.1.4",
     "vite-plugin-dynamic-import": "^1.2.7",
     "vite-plugin-resolve": "^2.3.0",
     "vite-plugin-top-level-await": "^1.2.2",
     "vue-router": "^4.1.6"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,js,vue}": [
+      "yarn lint --no-fix",
+      "git add"
+    ]
   }
 }
