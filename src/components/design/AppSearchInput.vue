@@ -11,7 +11,7 @@
               :width="isMobile ? `${mobileWidth - 260}px` : '600px'"
               :lg="true"
               :debounce="debounce"
-              :placeholder="'Search'">
+              :placeholder="$t('t_search')">
           </app-input>
           <app-input
               v-else
@@ -216,7 +216,6 @@ export default defineComponent({
           // const response = await getTechniquesRelationsQuery();
           // const response = await getById('T1027.004');
           const response = await searchForEntities(search);
-          console.log(response);
           state.entities = []
           for (const [key, entity] of Object.entries(response)) {
             state.entities.push(entity);
