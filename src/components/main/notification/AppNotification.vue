@@ -23,9 +23,9 @@
 							<app-box>
                 <app-icon name="app-icon-close" fill="display-content-400" />
 							</app-box>
-							<ds-box>
+							<app-box>
 								esc
-							</ds-box>
+							</app-box>
 						</app-box>
 					</div>
 				</div>

@@ -46,6 +46,7 @@ export type SparqlHead = SparqlList<string>
 export interface SparqlResult {
   head: SparqlHead,
   results: SparqlResults,
+  [Symbol.iterator](): IterableIterator<[string, any]>
 }
 
 export type PageResult = ImagePageResult

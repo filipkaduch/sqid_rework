@@ -6,7 +6,9 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build --host
+EXPOSE 443
+
+RUN npm run dev
 
 EXPOSE 443
 

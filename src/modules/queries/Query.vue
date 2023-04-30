@@ -40,16 +40,16 @@
           :align="isLoading ? 'center' : 'left'" flex-type="row">
         <entity v-if="currentQuery.dataSource?.value === DataSourceType.WIKIDATA" :entity-id="currentQuery.entityId" />
         <malware
-            v-else-if="currentQuery.dataSource?.value === DataSourceType.SECURITY_DOMAIN"
-            :class="{'content': fullscreen}"
-            :malware-id="currentQuery.entityId"
-            :query-id="currentQuery.id"
-            @fullscreen="fullscreen = !fullscreen"
-            @on-error="showError = true;"
-            @new-query="closingEffect"/>
-        <cve v-else-if="currentQuery.dataSource?.value === DataSourceType.CVE_DOMAIN"
+                v-if="currentQuery.dataSource?.value === DataSourceType.SECURITY_DOMAIN && currentQuery?.entityId"
+                :class="{'content': fullscreen}"
+                :malware-id="currentQuery?.entityId ?? ''"
+                :query-id="currentQuery.id"
+                @fullscreen="fullscreen = !fullscreen"
+                @on-error="showError = true;"
+                @new-query="closingEffect"/>
+        <cve v-if="currentQuery.dataSource?.value === DataSourceType.CVE_DOMAIN"
            :class="{'content': fullscreen}"
-           :cve-id="currentQuery.entityId"
+           :cve-id="currentQuery?.entityId ?? ''"
            :query-id="currentQuery.id"
            @fullscreen="fullscreen = !fullscreen"
            @new-query="closingEffect" />
@@ -86,10 +86,12 @@ import {mappedDataSources} from "@/util/consts/dataSources";
 import Cve from "@/modules/cves/Cve.vue";
 import {useMobileStore} from "@/store/util/mobile";
 import Error from "@/views/Error.vue";
+import {useMalwaresStore} from "../malwares/store/malwaresStore";
 
 
 export default defineComponent({
   name: 'Query',
+    methods: {useMalwaresStore},
   computed: {
     mappedDataSources() {
       return mappedDataSources
