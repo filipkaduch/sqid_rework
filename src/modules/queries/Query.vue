@@ -34,6 +34,7 @@
     </app-box>
     <app-collapse :is-open="collapse || currentQuery.opened">
       <app-box
+          v-if="!showError"
           class="custom-navbar app-bg-separate-content-0 height-animation w-100 resize-query"
           :class="{'fullscreen-modal': fullscreen && !isMobile, 'fullscreen-mobile': fullscreen && isMobile}"
           :align="isLoading ? 'center' : 'left'" flex-type="row">
@@ -44,6 +45,7 @@
             :malware-id="currentQuery.entityId"
             :query-id="currentQuery.id"
             @fullscreen="fullscreen = !fullscreen"
+            @on-error="showError = true;"
             @new-query="closingEffect"/>
         <cve v-else-if="currentQuery.dataSource?.value === DataSourceType.CVE_DOMAIN"
            :class="{'content': fullscreen}"
@@ -51,6 +53,9 @@
            :query-id="currentQuery.id"
            @fullscreen="fullscreen = !fullscreen"
            @new-query="closingEffect" />
+      </app-box>
+      <app-box v-else>
+          <error />
       </app-box>
     </app-collapse>
     <app-modal
@@ -80,6 +85,7 @@ import Malware from "@/modules/malwares/Malware.vue";
 import {mappedDataSources} from "@/util/consts/dataSources";
 import Cve from "@/modules/cves/Cve.vue";
 import {useMobileStore} from "@/store/util/mobile";
+import Error from "@/views/Error.vue";
 
 
 export default defineComponent({
@@ -89,7 +95,7 @@ export default defineComponent({
       return mappedDataSources
     }
   },
-  components: {Cve, Malware, Entity, AppLoader},
+  components: {Error, Cve, Malware, Entity, AppLoader},
   props: {
     currentQuery: {
       type: Object as PropType<Query>,
@@ -106,7 +112,8 @@ export default defineComponent({
     const state = reactive({
       collapse: false,
       showWarningModal: false,
-      fullscreen: false
+      fullscreen: false,
+      showError: false
     });
 
     const closingEffect = () => {

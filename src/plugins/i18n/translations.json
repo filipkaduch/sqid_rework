@@ -293,6 +293,7 @@
 		"t_search": "Hľadaj",
 		"t_source": "Dátový zdroj",
 		"t_wikimedia": "Wikidata",
+		"t_cveDomain": "CVE doména",
 		"t_addQuery": "Pridaj hľadanie",
 		"t_deleteQuery": "Odstráň záznam",
 		"t_openQuery": "Otvor hľadanie",

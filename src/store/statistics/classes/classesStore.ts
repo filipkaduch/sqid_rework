@@ -61,9 +61,6 @@ export const useClassesStore = defineStore('classesStore', {
             for (const [entityId, record] of response) {
                 this.entities[selectedEntityId].hierarchy.set(entityId, record);
             }
-            console.log('SHOW ISSUE: ', response);
-            console.log(entityId);
-            console.log(response.get(entityId));
             return response.get(entityId)!;
         },
         async getClassUsageCounts(entityIds: EntityId[], selectedEntityId: EntityId) {

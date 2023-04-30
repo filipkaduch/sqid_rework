@@ -92,7 +92,6 @@ export const getRefDataForCveProperty = async(cveId: string): Promise<RefData> =
         const refType =  getCveEntityType(data?.predicate);
         refObject.id = extractId(data?.subject, '/');
         refObject.source = DataSourceType.CVE_DOMAIN;
-        console.log(refType, data);
         switch (refType) {
             case CVEProperties.DESCRIPTION:
                 refObject.description = trimQuotes(data.object);
@@ -154,7 +153,6 @@ export const mapCveData = async(cve: Cve, claims: CveClaim[]) => {
                 cve[cvePropertyTypes.NOTES]?.push(noteObject);
                 break;
             case cvePropertyTypes.HAS_REFERENCE:
-                console.log(claim.value);
                 const refObject = await getRefDataForCveProperty(claim.value);
                 cve[cvePropertyTypes.REFERENCES]?.push(refObject);
                 break;

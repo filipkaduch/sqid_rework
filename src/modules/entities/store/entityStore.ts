@@ -521,7 +521,6 @@ export const useEntityStore = defineStore('entityStore', {
 
                         this.entities[entityId].entity.images = useClaimsStore().getImages(entityId, entityId);
                         this.entities[entityId].entity.banner = useClaimsStore().getBanner(entityId, entityId);
-                        console.log(`SHOW KIND: ${kind}`);
                         if (kind === 'property') {
                             this.entities[entityId].entity.propertyDatatype = this.getPropertyDatatype(entityId, entityId) || null
 
@@ -530,7 +529,6 @@ export const useEntityStore = defineStore('entityStore', {
                         }
 
                         const superClasses = (useClaimsStore().getValuesForProperty(entityId, 'P279', entityId) as QualifiedEntityValue[]) || []
-                        console.log(superClasses);
                         this.entities[entityId].entity.superClasses = superClasses
                         const getClassesUsage = await useClassesStore().getClassUsageCounts(this.entities[entityId].entity.superClasses.map((entity: any) => entity.value.id), entityId);
                         this.entities[entityId].entity.superClassesUsage = getClassesUsage;
