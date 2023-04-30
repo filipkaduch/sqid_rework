@@ -4,7 +4,7 @@ import dynamicImport from 'vite-plugin-dynamic-import';
 // import pluginResolve from 'vite-plugin-resolve';
 import topLevelAwait from 'vite-plugin-top-level-await';
 // @ts-ignore
-import path from 'path';
+const path = require('path');
 
 // https://vitejs.dev/config/
 export default defineConfig({
