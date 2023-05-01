@@ -11,5 +11,10 @@ app.get(/.*/, function (req, res) {
     res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 const port = process.env.PORT || 8000
 app.listen(port);
