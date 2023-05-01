@@ -6,10 +6,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 443
+EXPOSE 8080
 
-RUN npm run dev
-
-EXPOSE 443
+RUN npm run build
 
 CMD [ "npm", "run", "serve --host" ]
