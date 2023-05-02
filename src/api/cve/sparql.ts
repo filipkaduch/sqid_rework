@@ -1,7 +1,7 @@
 import {SparqlBinding} from "@/api/wikidata/types";
 import {sparqlRequest} from "@/api/wikidata";
 import {
-    feiSecurity,
+    feiSecurity, localSparqlCVEEndpoint,
     localSparqlEndpoint
 } from "@/api/endpoints";
 
@@ -70,11 +70,36 @@ export const searchForEntitiesCVE = async(search: string) => {
     return response;
 };
 
+export const searchForEntitiesApacheCVE = async(search: string) => {
+    const response = await sparqlRequest(localSparqlCVEEndpoint, `
+            SELECT ?entity ?property ?value
+        WHERE {
+         GRAPH <http://malware-ontology.onrender.com/cve/data/cve>
+        {
+          ?entity ?property ?value .
+          FILTER (?property = <${feiSecurity}Description>)
+          FILTER (regex(str(?value), "${search}", "i"))
+        }}
+        LIMIT 10`);
+    return response.results.bindings;
+};
+
 export const loadCVEById = async(cveId: string) => {
     const response = await sparqlRequest(localSparqlEndpoint,`
         DESCRIBE <${feiSecurity}${cveId}>
     `);
     return response;
+};
+
+export const loadCVEByIdApache = async(cveId: string) => {
+    const response = await sparqlRequest(localSparqlCVEEndpoint,`
+        SELECT DISTINCT ?property ?value {
+         GRAPH <http://malware-ontology.onrender.com/cve/data/cve>
+            {
+                <${feiSecurity}${cveId}> ?property ?value .
+            }
+        }`);
+    return response.results.bindings;
 };
 
 export const getRelationsQuery = async(): Promise<SparqlBinding[]> => {

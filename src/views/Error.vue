@@ -1,6 +1,9 @@
 <template>
-    <app-box flex-type="row">
-        {{ msg }}
+    <app-box flex-type="row" class="w-100 h-100" align="center" align-y="center">
+        <app-box flex-type="column" align="center" padding-top="XXL">
+            <app-text variant="app-paragraphLarge">{{ msg }}</app-text>
+            <img src="@/assets/images/frown.png" alt="Error">
+        </app-box>
     </app-box>
 </template>
 
@@ -13,7 +16,7 @@ export default defineComponent({
     props: {
       msg: {
           type: String,
-          default: 'Error'
+          default: 'Sorry, something failed'
       }
     },
     setup() {

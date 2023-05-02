@@ -78,7 +78,7 @@ import {DataSourceType, useQueriesStore} from "@/modules/queries/store/queriesSt
 import {getName, searchForEntities} from "@/api/malwares/sparql";
 import {extractId} from "@/api/malwares/malwares";
 import {defaultMalware, useMalwaresStore} from "@/modules/malwares/store/malwaresStore";
-import {searchForEntitiesCVE} from "@/api/cve/sparql";
+import {searchForEntitiesApacheCVE, searchForEntitiesCVE} from "@/api/cve/sparql";
 import {SearchedCveObject} from "@/api/cve/types";
 import {extractCVEId} from "@/api/cve/cve";
 import {defaultCve, useCVEStore} from "@/modules/cves/store/cveStore";
@@ -139,16 +139,16 @@ export default defineComponent({
 
     const mappedMalwares = computed(() => state.selectedDataSource?.value === DataSourceType.SECURITY_DOMAIN ? state.entities?.map((toMap: any) => ({
       entity: toMap,
-      label: objectCaseMapper(extractId(toMap.value), objectCaseStyles.SENTENCE_CASE),
-      properties: {subText: extractId(toMap.entity)},
-      value: extractId(toMap.entity)
+      label: objectCaseMapper(extractId(toMap.value.value), objectCaseStyles.SENTENCE_CASE),
+      properties: {subText: extractId(toMap.entity.value)},
+      value: extractId(toMap.entity.value)
     })) : [] ?? []);
 
-    const mappedCves = computed(() => state.selectedDataSource?.value === DataSourceType.CVE_DOMAIN ? state.entities?.map((toMap: SearchedCveObject) => ({
+    const mappedCves = computed(() => state.selectedDataSource?.value === DataSourceType.CVE_DOMAIN ? state.entities?.map((toMap: any) => ({
       entity: toMap,
-      value: extractCVEId(extractId(toMap.entity, '/')),
-      properties: {subText: objectCaseMapper(extractId(toMap.value), objectCaseStyles.SENTENCE_CASE)},
-      label: extractId(toMap.entity, '/')
+      value: extractCVEId(extractId(toMap.entity.value, '/')),
+      properties: {subText: objectCaseMapper(extractId(toMap.value.value), objectCaseStyles.SENTENCE_CASE)},
+      label: extractId(toMap.entity.value, '/')
     })) : [] ?? []);
 
     const getSearchedEntities = computed(() => {
@@ -185,6 +185,8 @@ export default defineComponent({
     };
 
     const searchEntitites = async(search: string) => {
+      // const isLocalHost = /localhost/.test(window.location.href);
+      const isLocalHost = false
       if (state.selectedDataSource?.value === DataSourceType.WIKIDATA) {
         try {
           const response = await searchEntities(search, { limit: 10 })
@@ -217,7 +219,7 @@ export default defineComponent({
           // const response = await getById('T1027.004');
           const response = await searchForEntities(search);
           state.entities = []
-          for (const [key, entity] of Object.entries(response)) {
+          for (const entity of response) {
             state.entities.push(entity);
           }
         } catch (err) {
@@ -230,10 +232,16 @@ export default defineComponent({
         }
       } else if (state.selectedDataSource?.value === DataSourceType.CVE_DOMAIN) {
         try {
-          const response = await searchForEntitiesCVE(search);
+          const response = await searchForEntitiesApacheCVE(search);
           state.entities = []
-          for (const [key, entity] of Object.entries(response)) {
-            state.entities.push(entity);
+          if (isLocalHost) {
+              for (const [key, entity] of Object.entries(response)) {
+                  state.entities.push(entity);
+              }
+          } else {
+              for (const entity of response) {
+                  state.entities.push(entity);
+              }
           }
         } catch (err) {
           notify({
@@ -260,9 +268,9 @@ export default defineComponent({
         if (useQueriesStore().queries.find((query) => query.id === props.queryId)) {
           // @ts-ignore
           useQueriesStore().queries.find((query) => query.id === props.queryId).entityId = event.value;
-          const toSliceName = await getName(event.value);
+          const toSliceName = await getName(event.value.value);
           // @ts-ignore
-          useQueriesStore().queries.find((query) => query.id === props.queryId).name = toSliceName.slice(1, -1);
+          useQueriesStore().queries.find((query) => query.id === props.queryId).name = toSliceName;
         }
       } else if (state.selectedDataSource?.value === DataSourceType.CVE_DOMAIN) {
         useCVEStore().cves[event.value] = cloneDeep(defaultCve);

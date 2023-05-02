@@ -3,6 +3,10 @@
     {
       "type": "file",
       "value": "file:///database/malware.owl"
+    },
+    {
+      "type": "file",
+      "value": "file:///database/cve_gen/CVE-2000-owl.owl"
     }
   ]
 }

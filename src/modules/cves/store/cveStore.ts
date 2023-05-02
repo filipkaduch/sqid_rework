@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
 import cloneDeep from "lodash/cloneDeep";
-import {loadCVEById} from "@/api/cve/sparql";
+import {loadCVEById, loadCVEByIdApache} from "@/api/cve/sparql";
 import {cvePropertyTypes, mapCveData, parseCveProperties, RefData} from "@/api/cve/cve";
 import {NoteData} from "@/api/cve/cve";
 import {malwarePropertyTypes} from "@/api/malwares/malwares";
@@ -47,9 +47,13 @@ export const useCVEStore = defineStore('cveStore', {
         getAllCves: (state) => state.cves
     },
     actions: {
-        async updateCveData(cveId: string) {
-            const properties = await loadCVEById(cveId);
-            console.log('SHOW PROPERTIES: ', properties);
+        async updateCveData(cveId: string, local: boolean = false) {
+            let properties;
+            if (local) {
+                properties = await loadCVEById(cveId);
+            } else {
+                properties = await loadCVEByIdApache(cveId);
+            }
             const parsedData = parseCveProperties(properties);
             this.cves[cveId].claims = cloneDeep(parsedData);
             this.cves[cveId].id = cveId;

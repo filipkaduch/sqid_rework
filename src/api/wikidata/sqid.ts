@@ -257,7 +257,6 @@ export async function getExampleValues(entityId: EntityId, lang: string) {
 export async function getUrlPatterns(lastRefresh: number) {
   const patterns = new Map<EntityId, string>()
   const response = await axiosGet(getDataFileURI('properties/urlpatterns', lastRefresh))
-  console.log(response);
   for (const [propertyId, pattern] of Object.entries(response)) {
     patterns.set(pifyNumericId(propertyId), pattern as string)
   }
