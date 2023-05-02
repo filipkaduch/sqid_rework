@@ -1,5 +1,5 @@
 <template>
-  <v-dropdown :placement="placement" :container="container" @apply-hide="$emit('hidden')">
+  <v-dropdown :placement="placement" :container="container" :triggers="['hover', 'focus', 'touch', 'click']" @apply-hide="$emit('hidden')">
     <slot name="triggerContent" />
     <!-- eslint-disable-next-line vue/no-unused-vars --->
     <template #popper="{hide}">
@@ -11,12 +11,8 @@
 </template>
 
 <script lang="ts">
-// eslint-disable-next-line no-unused-vars
 import {defineComponent, PropType} from 'vue';
-// eslint-disable-next-line no-unused-vars
 import {PlacementVariants} from '@/components/main/layout/utils/types';
-// eslint-disable-next-line no-unused-vars
-import {SelectItem} from '@/components/main/Dropdown/types';
 type ButtonVariants = 'primary' | 'secondary' | 'inverted' | 'ghost';
 
 export default defineComponent({
