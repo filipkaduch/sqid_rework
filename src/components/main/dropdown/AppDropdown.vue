@@ -1,5 +1,5 @@
 <template>
-  <v-dropdown :placement="placement" :container="container" :triggers="['hover', 'focus', 'touch', 'click']" @apply-hide="$emit('hidden')">
+  <v-dropdown :placement="placement" :container="container" :triggers="['touch', 'click']" @apply-hide="$emit('hidden')">
     <slot name="triggerContent" />
     <!-- eslint-disable-next-line vue/no-unused-vars --->
     <template #popper="{hide}">

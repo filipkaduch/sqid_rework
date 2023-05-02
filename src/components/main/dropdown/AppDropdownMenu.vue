@@ -7,6 +7,7 @@
           v-close-popper
           class="dd-item user-select-none cursor-pointer"
           :class="{disabled: item.disabled}"
+          @touchstart="emitSelected(item)"
           @click="emitSelected(item)">
         <app-box
             class="cursor-pointer"
