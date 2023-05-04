@@ -70,6 +70,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .custom-navbar {
     max-height: 90vh;
+    overflow-y: auto;
     border-radius: 8px;
     padding: 16px 16px;
     box-shadow: 0 3px 6px 0 rgb(0 0 0 / 5%);
