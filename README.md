@@ -27,3 +27,33 @@ npm run dev
 ```sh
 npm run build
 ```
+
+# Diplomová práca - Prehliadač ontológií v oblasti bezpečnosti
+
+Táto šablóna by mala pomôcť začať s vývojom v Vue 3 v aplikácii Vite.
+
+## Odporúčané nastavenie IDE
+
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (a vypnite Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+## Prispôsobenie konfigurácie
+
+Pozrite si [referenčnú príručku konfigurácie Vite](https://vitejs.dev/config/).
+
+## Nastavenie projektu
+
+```sh
+npm install
+```
+
+### Kompilácia a Hot-Reload pre vývoj
+
+```sh
+npm run dev
+```
+
+### Kompilácia a minifikácia pre produkciu
+
+```sh
+npm run build
+```
