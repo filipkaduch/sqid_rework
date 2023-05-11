@@ -5,7 +5,7 @@
 <script lang="ts">
 import {defineComponent, PropType, computed} from 'vue';
 import inlineSvg from 'vue-inline-svg';
-import {AppColorTypes} from '@/styles/values/types';
+import {AppColorsTypes} from '@/styles/values/types';
 
 export default defineComponent({
 	name: 'AppIcon',
@@ -18,7 +18,7 @@ export default defineComponent({
 			default: null
 		},
 		fill: {
-			type: String as PropType<AppColorTypes>,
+			type: String as PropType<AppColorsTypes>,
 			default: 'not-set'
 		},
 		opacity: {

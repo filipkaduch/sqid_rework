@@ -1,8 +1,8 @@
 export const commonsEndpoint = 'https://commons.wikimedia.org/w/api.php'
 export const wikidataEndpoint = 'https://www.wikidata.org/w/api.php'
 export const sparqlEndpoint = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
-export const localSparqlEndpoint = 'https://malware-ontology.onrender.com/malware/query';
-export const localSparqlCVEEndpoint = 'https://malware-ontology.onrender.com/cve/query';
+export const localSparqlEndpoint = 'https://malware-ont.onrender.com/query';
+export const localSparqlCVEEndpoint = 'https://malware-ont.onrender.com/query';
 export const feiOntologyEndpoint = 'http://www.semanticweb.org/stufei/ontologies/malware#';
 export const rdfSchema = 'http://www.w3.org/2000/01/rdf-schema#';
 export const rdfSchemaSyntax = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
