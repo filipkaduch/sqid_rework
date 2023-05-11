@@ -70,18 +70,20 @@ export const searchForEntitiesCVE = async(search: string) => {
     return response;
 };
 
-export const searchForEntitiesApacheCVE = async(search: string) => {
+export const searchForEntitiesApacheCVE = async(search: string, map: boolean = true) => {
     const response = await sparqlRequest(localSparqlCVEEndpoint, `
             SELECT ?entity ?property ?value
         WHERE {
-         GRAPH <http://malware-ontology.onrender.com/cve/data/cve>
-        {
+
           ?entity ?property ?value .
           FILTER (?property = <${feiSecurity}Description>)
           FILTER (regex(str(?value), "${search}", "i"))
-        }}
+        }
         LIMIT 10`);
-    return response.results.bindings;
+    if (map) {
+        return response.results.bindings.map((bind) => ({...bind.entries}))
+    }
+    return response
 };
 
 export const loadCVEById = async(cveId: string) => {
@@ -91,14 +93,14 @@ export const loadCVEById = async(cveId: string) => {
     return response;
 };
 
-export const loadCVEByIdApache = async(cveId: string) => {
+export const loadCVEByIdApache = async(cveId: string, map: boolean = true) => {
     const response = await sparqlRequest(localSparqlCVEEndpoint,`
         SELECT DISTINCT ?property ?value {
-         GRAPH <http://malware-ontology.onrender.com/cve/data/cve>
-            {
-                <${feiSecurity}${cveId}> ?property ?value .
-            }
+            <${feiSecurity}${cveId}> ?property ?value .
         }`);
+    if (map) {
+        return response.results.bindings.map((bind) => ({...bind.entries}))
+    }
     return response.results.bindings;
 };
 

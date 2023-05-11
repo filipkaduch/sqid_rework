@@ -69,7 +69,7 @@ const trimQuotes = (str: string) => {
 
 export const parseCveProperties = (properties: any) => {
     return properties.map((property: any) => ({
-        property: extractId(property.property.type, '/'),
+        property: extractId(property.property.termType, '/'),
         value: extractId(property.value.value, '/')
     }));
 };
