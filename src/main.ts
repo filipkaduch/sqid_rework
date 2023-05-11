@@ -5,7 +5,7 @@ import * as plugins from './plugins/all';
 
 const app = createApp(App);
 app.use(ComponentsInstaller);
-app.use(plugins.floatingVue, { themes: { tooltip: { triggers: ['touch', 'click'] } } });
+app.use(plugins.floatingVue);
 app.use(plugins.i18n);
 app.use(plugins.pinia);
 app.use(plugins.router);
