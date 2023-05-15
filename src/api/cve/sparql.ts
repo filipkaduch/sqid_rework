@@ -66,7 +66,7 @@ export const searchForEntitiesCVE = async(search: string) => {
           FILTER (?property = <${feiSecurity}Description>)
           FILTER (regex(str(?value), "${search}", "i"))
         }
-        LIMIT 10`);
+        LIMIT 3`);
     return response;
 };
 
@@ -79,7 +79,7 @@ export const searchForEntitiesApacheCVE = async(search: string, map: boolean = t
           FILTER (?property = <${feiSecurity}Description>)
           FILTER (regex(str(?value), "${search}", "i"))
         }
-        LIMIT 10`);
+        LIMIT 3`);
     if (map) {
         return response.results.bindings.map((bind) => ({...bind.entries}))
     }
