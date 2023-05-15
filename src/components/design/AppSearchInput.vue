@@ -75,7 +75,7 @@ import {i18n} from "../../plugins/all";
 import {objectCaseMapper, objectCaseStyles} from "@/util/objectCaseMapper";
 import {defaultEntityState, useEntityStore} from "@/modules/entities/store/entityStore";
 import {DataSourceType, useQueriesStore} from "@/modules/queries/store/queriesStore";
-import {getName, searchForEntities} from "@/api/malwares/sparql";
+import {getName, getTechniquesRelationsQuery, searchForEntities} from "@/api/malwares/sparql";
 import {extractId} from "@/api/malwares/malwares";
 import {defaultMalware, useMalwaresStore} from "@/modules/malwares/store/malwaresStore";
 import {searchForEntitiesApacheCVE, searchForEntitiesCVE} from "@/api/cve/sparql";
@@ -186,7 +186,7 @@ export default defineComponent({
 
     const searchEntitites = async(search: string) => {
       // const isLocalHost = /localhost/.test(window.location.href);
-      const isLocalHost = false
+      const isLocalHost = true;
       if (state.selectedDataSource?.value === DataSourceType.WIKIDATA) {
         try {
           const response = await searchEntities(search, { limit: 10 })
@@ -215,13 +215,20 @@ export default defineComponent({
         }
       } else if (state.selectedDataSource?.value === DataSourceType.SECURITY_DOMAIN) {
         try {
-          // const response = await getTechniquesRelationsQuery();
-          // const response = await getById('T1027.004');
-          const response = await searchForEntities(search);
+            // const testRes = await getTechniquesRelationsQuery();
+            // console.log(testRes);
+          const response = await searchForEntities(search, true);
+          console.log(response);
           state.entities = []
-          for (const entity of response) {
-            state.entities.push(entity);
-          }
+            if (isLocalHost) {
+                for (const [key, entity] of Object.entries(response)) {
+                    state.entities.push(entity);
+                }
+            } else {
+                for (const entity of response) {
+                    state.entities.push(entity);
+                }
+            }
         } catch (err) {
           notify({
             type: 'danger',
@@ -243,6 +250,7 @@ export default defineComponent({
                   state.entities.push(entity);
               }
           }
+          console.log(state.entities);
         } catch (err) {
           notify({
             type: 'danger',
